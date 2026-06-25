@@ -10,20 +10,32 @@
 
     <style>
         html {
-            background: url(assets/img/splash.jpg) no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
+            background: #0a0a1a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #0a0a1a;
+        }
+
+        .splash-img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 12px;
         }
 
         .version-text {
             position: fixed;
             bottom: 10px;
             right: 10px;
-            color: black;
-            font-size: 18px;
-            font-family:'Times New Roman', Times, serif
+            color: #666;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
         }
     </style>
 
@@ -35,6 +47,7 @@
         <source src="Audio/Hadar-bootsplash.mp3" type="audio/mpeg">
     </audio>
 
+    <img class="splash-img" src="assets/img/splash.jpg" alt="Hadar Framework">
     <div class="version-text">v1.0-beta.5</div>
 </body>
 
