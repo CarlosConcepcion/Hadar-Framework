@@ -1,70 +1,76 @@
-<div class="ui segment h100" style="background:transparent;border:none;box-shadow:none;padding:20px;">
+<div class="ui segment h100" style="background: transparent; border: none; box-shadow: none; padding: 20px;">
 
-    <div class="build-section">
-        <div class="build-section-header">SERVER CONFIGURATION</div>
-        <div class="build-section-body">
+    <div class="ui segments" style="border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.12);">
+        <div class="ui secondary segment" style="background: #1a1a2e; border: none;">
+            <h4 style="margin: 0; color: #e0e0e0; font-weight: 300; letter-spacing: 1px;">SERVER CONFIGURATION</h4>
+        </div>
+        <div class="ui segment" style="border: none; padding: 15px 20px; background: #16213e;">
             <div class="two fields">
                 <div class="field">
-                    <label style="color:var(--text-muted);font-size:11px;text-transform:uppercase;letter-spacing:1px;">Server IP</label>
+                    <label style="color: #a0a0a0; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Server IP</label>
                     <div class="ui fluid input">
-                        <input ng-model="srcIP" type="text" placeholder="192.168.1.100" style="background:var(--bg-input);color:var(--text-primary);border:1px solid var(--border-color);border-radius:4px;padding:10px 14px;">
+                        <input ng-model="srcIP" type="text" placeholder="192.168.1.100" style="background: #0f3460; color: #fff; border: 1px solid #1a1a4e; border-radius: 4px; padding: 10px 14px;">
                     </div>
                 </div>
                 <div class="field">
-                    <label style="color:var(--text-muted);font-size:11px;text-transform:uppercase;letter-spacing:1px;">Server Port</label>
+                    <label style="color: #a0a0a0; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Server Port</label>
                     <div class="ui fluid input">
-                        <input ng-model="srcPort" type="number" min="1025" max="65535" placeholder="42474" style="background:var(--bg-input);color:var(--text-primary);border:1px solid var(--border-color);border-radius:4px;padding:10px 14px;">
+                        <input ng-model="srcPort" type="number" min="1025" max="65535" placeholder="42474" style="background: #0f3460; color: #fff; border: 1px solid #1a1a4e; border-radius: 4px; padding: 10px 14px;">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="build-section">
-        <div class="build-section-header">PERMISSIONS</div>
-        <div class="build-section-body">
+    <div style="height: 15px;"></div>
+
+    <div class="ui segments" style="border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.12);">
+        <div class="ui secondary segment" style="background: #1a1a2e; border: none;">
+            <h4 style="margin: 0; color: #e0e0e0; font-weight: 300; letter-spacing: 1px;">PERMISSIONS</h4>
+        </div>
+        <div class="ui segment" style="border: none; padding: 15px 20px; background: #16213e;">
             <div class="ui grid">
                 <div class="row">
                     <div class="two wide column center aligned">
                         <div class="ui checkbox">
                             <input type="checkbox" id="Permissions1" value="CameraPer">
-                            <label style="color:var(--text-secondary);"><i class="photo icon" style="color:#e74c3c;"></i> Camera</label>
+                            <label style="color: #ccc;"><i class="photo icon" style="color: #e74c3c;"></i> Camera</label>
                         </div>
                     </div>
                     <div class="two wide column center aligned">
                         <div class="ui checkbox">
                             <input type="checkbox" id="Permissions2" value="StoragePer">
-                            <label style="color:var(--text-secondary);"><i class="database icon" style="color:#f39c12;"></i> Storage</label>
+                            <label style="color: #ccc;"><i class="database icon" style="color: #f39c12;"></i> Storage</label>
                         </div>
                     </div>
                     <div class="two wide column center aligned">
                         <div class="ui checkbox">
                             <input type="checkbox" id="Permissions3" value="MicPer">
-                            <label style="color:var(--text-secondary);"><i class="microphone icon" style="color:#3498db;"></i> Mic</label>
+                            <label style="color: #ccc;"><i class="microphone icon" style="color: #3498db;"></i> Mic</label>
                         </div>
                     </div>
                     <div class="two wide column center aligned">
                         <div class="ui checkbox">
                             <input type="checkbox" id="Permissions4" value="LocationPer">
-                            <label style="color:var(--text-secondary);"><i class="map marker alternate icon" style="color:#9b59b6;"></i> Location</label>
+                            <label style="color: #ccc;"><i class="map marker alternate icon" style="color: #9b59b6;"></i> Location</label>
                         </div>
                     </div>
                     <div class="two wide column center aligned">
                         <div class="ui checkbox">
                             <input type="checkbox" id="Permissions5" value="ContactsPer">
-                            <label style="color:var(--text-secondary);"><i class="users icon" style="color:#1abc9c;"></i> Contacts</label>
+                            <label style="color: #ccc;"><i class="users icon" style="color: #1abc9c;"></i> Contacts</label>
                         </div>
                     </div>
                     <div class="two wide column center aligned">
                         <div class="ui checkbox">
                             <input type="checkbox" id="Permissions6" value="SMSPer">
-                            <label style="color:var(--text-secondary);"><i class="talk outline icon" style="color:#95a5a6;"></i> SMS</label>
+                            <label style="color: #ccc;"><i class="talk outline icon" style="color: #95a5a6;"></i> SMS</label>
                         </div>
                     </div>
                     <div class="two wide column center aligned">
                         <div class="ui checkbox">
                             <input type="checkbox" id="Permissions7" value="CallsLogsPer">
-                            <label style="color:var(--text-secondary);"><i class="call icon" style="color:#2c3e50;"></i> Calls</label>
+                            <label style="color: #ccc;"><i class="call icon" style="color: #2c3e50;"></i> Calls</label>
                         </div>
                     </div>
                 </div>
@@ -72,13 +78,17 @@
         </div>
     </div>
 
-    <div class="build-section">
-        <div class="build-section-header">BIND MODE</div>
-        <div class="build-section-body">
-            <div style="margin-bottom:10px;">
+    <div style="height: 15px;"></div>
+
+    <div class="ui segments" style="border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.12);">
+        <div class="ui secondary segment" style="background: #1a1a2e; border: none;">
+            <h4 style="margin: 0; color: #e0e0e0; font-weight: 300; letter-spacing: 1px;">BIND MODE</h4>
+        </div>
+        <div class="ui segment" style="border: none; padding: 15px 20px; background: #16213e;">
+            <div style="margin-bottom: 10px;">
                 <div class="ui checkbox">
                     <input ng-model="bindApk.enable" type="checkbox" name="bind">
-                    <label style="color:var(--text-secondary);">Enable bind with an original APK</label>
+                    <label style="color: #ccc;">Enable bind with an original APK</label>
                 </div>
             </div>
             <div ng-hide="!bindApk.enable">
@@ -87,22 +97,22 @@
                         <div class="eight wide column center aligned">
                             <div class="ui radio checkbox">
                                 <input type="radio" name="method" checked="checked" ng-model="bindApk.method" value="BOOT">
-                                <label style="color:var(--text-secondary);">Boot Method</label>
+                                <label style="color: #ccc;">Boot Method</label>
                             </div>
-                            <span style="font-size:11px;color:var(--accent-red);margin-left:6px;">Restart required</span>
+                            <span style="font-size: 11px; color: #e74c3c; margin-left: 6px;">Restart required</span>
                         </div>
                         <div class="eight wide column center aligned">
                             <div class="ui radio checkbox">
                                 <input type="radio" name="method" ng-model="bindApk.method" value="ACTIVITY">
-                                <label style="color:var(--text-secondary);">Activity Method</label>
+                                <label style="color: #ccc;">Activity Method</label>
                             </div>
-                            <span style="font-size:11px;color:var(--accent-red);margin-left:6px;">Doesn't work on all apps</span>
+                            <span style="font-size: 11px; color: #e74c3c; margin-left: 6px;">Doesn't work on all apps</span>
                         </div>
                     </div>
-                    <div class="row" style="margin-top:8px;">
+                    <div class="row" style="margin-top: 8px;">
                         <div class="sixteen wide column center aligned">
                             <button ng-click="clearLogs(); BrowseApk()" ng-disabled="!bindApk.enable"
-                                class="ui labeled icon button" style="background:var(--bg-input);color:var(--text-primary);border:1px solid var(--border-color);">
+                                class="ui labeled icon button" style="background: #0f3460; color: #fff; border: 1px solid #1a1a4e;">
                                 <i class="android icon"></i>Browse APK
                             </button>
                         </div>
@@ -112,15 +122,15 @@
         </div>
     </div>
 
-    <div style="height:20px;"></div>
+    <div style="height: 20px;"></div>
 
     <div class="center aligned">
         <button ng-click="clearLogs(); Build(srcIP,srcPort)" ng-hide="bindApk.enable" ng-show="Build"
-            class="ui labeled icon button" style="background:linear-gradient(135deg,var(--accent-red),#990000);color:#fff;border:none;padding:14px 40px;border-radius:4px;font-size:14px;letter-spacing:1px;">
+            class="ui labeled icon button" style="background: linear-gradient(135deg, #e74c3c, #c0392b); color: #fff; border: none; padding: 14px 40px; border-radius: 4px; font-size: 14px; letter-spacing: 1px;">
             <i class="hammer icon"></i>Build APK
         </button>
         <button ng-click="clearLogs(); Build(srcIP,srcPort)" ng-hide="Build" ng-show="bindApk.enable"
-            class="ui labeled icon button" style="background:linear-gradient(135deg,var(--accent-green),#008833);color:#fff;border:none;padding:14px 40px;border-radius:4px;font-size:14px;letter-spacing:1px;">
+            class="ui labeled icon button" style="background: linear-gradient(135deg, #27ae60, #1e8449); color: #fff; border: none; padding: 14px 40px; border-radius: 4px; font-size: 14px; letter-spacing: 1px;">
             <i class="screwdriver icon"></i>Bind APK
         </button>
     </div>
