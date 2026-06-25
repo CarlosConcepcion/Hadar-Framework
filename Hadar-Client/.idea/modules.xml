@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AhMyth-Client.iml" filepath="$PROJECT_DIR$/.idea/modules/AhMyth-Client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AhMyth-Client.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AhMyth-Client.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AhMyth-Client.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AhMyth-Client.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AhMyth-Client.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AhMyth-Client.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AhMyth-Client.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AhMyth-Client.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Hadar-Client.iml" filepath="$PROJECT_DIR$/.idea/modules/Hadar-Client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Hadar-Client.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Hadar-Client.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Hadar-Client.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Hadar-Client.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Hadar-Client.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Hadar-Client.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Hadar-Client.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Hadar-Client.app.unitTest.iml" />
     </modules>
   </component>
 </project>

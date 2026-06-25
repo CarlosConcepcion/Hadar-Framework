@@ -1,33 +1,17 @@
 name: client report
-description: Report an issue with the AhMyth Client.
+description: Report an issue with the Hadar Framework Client.
 title: 'client report: '
 labels: ['client error']
 body:
   - type: markdown
     attributes:
       value: |
-        <p align="center">
-          <picture>
-            <source
-              width="356px"
-              media="(prefers-color-scheme: dark)"
-              srcset="https://raw.githubusercontent.com/Morsmalleo/AhMyth/master/.github/IMG/Circle-Logo.png"
-            >
-            <img 
-              width="356px"
-              src="https://raw.githubusercontent.com/Morsmalleo/AhMyth/master/.github/IMG/Circle-Logo.png"
-            >
-          </picture>
-           <br>
-           Continuing the legacy of the AhMyth R.A.T Project
-        </p>
-
-        # AhMyth Client Report
+        # Hadar Framework Client Report
 
         Before creating a new client report, please keep the following in mind:
         - **Do not use this report for bound clients/payloads, only use this report for standalone clients/payloads**
-        - **Do not submit a duplicate client report**: You can review existing client reports [here](https://github.com/Morsmalleo/AhMyth/labels/client%20Error) & [here](https://github.com/Morsmalleo/AhMyth/labels/Client%20Bug).
-        - **Review the Issue Rules**: Make sure your client report adheres to these rules. You can find the guidelines [here](https://github.com/Morsmalleo/AhMyth/#Issue-Rules).
+        - **Do not submit a duplicate client report**: You can review existing client reports to check if your issue already exists.
+        - **Review the Issue Rules**: Make sure your client report adheres to the guidelines.
   - type: textarea
     attributes:
       label: client issue description
@@ -40,7 +24,7 @@ body:
   - type: textarea
     attributes:
       label: Error logs
-      description: If applicable, please post the error logs that are generated `C:\yourUserName\AhMyth\Logs | /home/youUserName/AhMyth/Logs`.
+      description: If applicable, please post the error logs that are generated.
       render: shell
   - type: textarea
     attributes:
