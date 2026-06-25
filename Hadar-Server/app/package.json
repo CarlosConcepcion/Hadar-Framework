@@ -4,7 +4,7 @@
     "author": "Hadar Framework",
     "productName": "Hadar Framework",
     "version": "1.0.0",
-    "homepage": "https://github.com/Morsmalleo/AhMyth",
+    "homepage": "https://github.com/CarlosConcepcion/Hadar-Framework",
     "main": "main.js",
     "dependencies": {
         "angular": "^1.8.3",

@@ -18,7 +18,7 @@ jobs:
     defaults:   
       run:     
         working-directory: 
-          AhMyth-Server
+          Hadar-Server
     runs-on: ubuntu-latest
     steps:
       - name: Cache node_modules
@@ -68,5 +68,5 @@ jobs:
       - name: Upload - push to artifact files
         uses: actions/upload-artifact@v1
         with:
-          name: AhMyth
-          path: ./AhMyth-Server/dist/
+          name: Hadar Framework
+          path: ./Hadar-Server/dist/
