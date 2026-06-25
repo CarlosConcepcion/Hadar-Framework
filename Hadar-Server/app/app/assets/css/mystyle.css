@@ -92,6 +92,10 @@ body, html {
 .ui.bottom.attached.tab.segment {
   background: var(--bg-primary) !important;
 }
+/* APK Builder tab - ensure scroll */
+[data-tab="second"] {
+  overflow-y: auto !important;
+}
 
 /* Victims header segments */
 .ui.horizontal.segments .ui.segment {
@@ -168,55 +172,146 @@ table.ui.table a.ui.black.ribbon.label:hover {
   color: var(--text-muted) !important;
 }
 
-/* Build view sections */
-.ui.segments {
-  background: var(--bg-card) !important;
-}
-.ui.segments .ui.secondary.segment {
-  background: var(--bg-secondary) !important;
-  border-bottom: 1px solid var(--border-color) !important;
-}
-.ui.segments .ui.secondary.segment h4 {
-  font-family: 'Orbitron', monospace !important;
-  color: var(--text-primary) !important;
-  letter-spacing: 1.5px !important;
-}
-.ui.segments .ui.segment {
-  background: var(--bg-card) !important;
-}
-.ui.segments .field label {
-  font-family: 'Rajdhani', sans-serif !important;
-  color: var(--text-muted) !important;
-  letter-spacing: 1px !important;
-}
-.ui.segments .ui.checkbox label {
-  font-family: 'Rajdhani', sans-serif !important;
-  color: var(--text-secondary) !important;
-}
-.ui.segments .ui.radio.checkbox label {
-  color: var(--text-secondary) !important;
+/* ===== BUILD VIEW ===== */
+/* Outer container */
+[data-tab="second"] > .ui.segment.h100 {
+  background: var(--bg-primary) !important;
 }
 
-/* Build/Bind buttons */
-.ui.center.aligned button.ui.labeled.icon.button:first-of-type {
-  background: linear-gradient(135deg, var(--accent-red), #990000) !important;
-  color: #fff !important;
-  font-family: 'Rajdhani', sans-serif !important;
+/* Section cards */
+[data-tab="second"] .ui.segments {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2) !important;
+  overflow: hidden !important;
 }
-.ui.center.aligned button.ui.labeled.icon.button:last-of-type {
-  background: linear-gradient(135deg, var(--accent-green), #008833) !important;
-  color: #fff !important;
-  font-family: 'Rajdhani', sans-serif !important;
+[data-tab="second"] .ui.segments .ui.secondary.segment {
+  background: linear-gradient(90deg, var(--bg-secondary), transparent) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  padding: 12px 16px !important;
 }
-.ui.center.aligned button.ui.labeled.icon.button:hover {
-  filter: brightness(1.15) !important;
+[data-tab="second"] .ui.segments .ui.secondary.segment h4 {
+  font-family: 'Orbitron', monospace !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  color: var(--text-primary) !important;
+  margin: 0 !important;
+}
+[data-tab="second"] .ui.segments .ui.segment {
+  background: var(--bg-card) !important;
+  padding: 16px 20px !important;
+}
+
+/* Field labels */
+[data-tab="second"] .field label {
+  font-family: 'Rajdhani', sans-serif !important;
+  color: var(--text-muted) !important;
+  font-size: 11px !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+}
+
+/* Input styling */
+[data-tab="second"] .field input {
+  background: var(--bg-input) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 4px !important;
+  padding: 10px 14px !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  transition: border-color 0.2s !important;
+}
+[data-tab="second"] .field input:focus {
+  border-color: var(--accent-red) !important;
+  box-shadow: 0 0 8px var(--accent-red-glow) !important;
+}
+
+/* Permission checkboxes */
+[data-tab="second"] .ui.checkbox label {
+  font-family: 'Rajdhani', sans-serif !important;
+  color: var(--text-secondary) !important;
+  font-size: 12px !important;
+  letter-spacing: 0.5px !important;
+  font-weight: 600 !important;
+}
+[data-tab="second"] .ui.checkbox label i {
+  margin-right: 4px !important;
+}
+
+/* Bind Mode section */
+[data-tab="second"] .ui.checkbox input[type="checkbox"][name="bind"] + label {
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+  padding-left: 26px !important;
+}
+
+/* Radio buttons */
+[data-tab="second"] .ui.radio.checkbox label {
+  color: var(--text-secondary) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  letter-spacing: 0.5px !important;
+}
+[data-tab="second"] span[style*="color: #e74c3c"] {
+  color: var(--accent-red) !important;
+  font-size: 10px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  opacity: 0.8 !important;
 }
 
 /* Browse APK button */
-button.ui.labeled.icon.button[ng-click*="BrowseApk"] {
+[data-tab="second"] button.ui.labeled.icon.button[ng-click*="BrowseApk"] {
   background: var(--bg-input) !important;
-  color: var(--text-primary) !important;
-  border-color: var(--border-color) !important;
+  color: var(--accent-blue) !important;
+  border: 1px solid var(--border-color) !important;
+  padding: 10px 24px !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+  transition: all 0.2s !important;
+}
+[data-tab="second"] button.ui.labeled.icon.button[ng-click*="BrowseApk"]:hover {
+  border-color: var(--accent-blue) !important;
+  box-shadow: 0 0 10px rgba(0,102,255,0.2) !important;
+}
+[data-tab="second"] button.ui.labeled.icon.button[ng-click*="BrowseApk"]:disabled {
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
+}
+
+/* Build / Bind action buttons */
+[data-tab="second"] .center.aligned button.ui.labeled.icon.button {
+  font-family: 'Rajdhani', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  padding: 14px 40px !important;
+  border: none !important;
+  border-radius: 4px !important;
+  transition: all 0.3s !important;
+  cursor: pointer !important;
+}
+[data-tab="second"] .center.aligned button.ui.labeled.icon.button:first-of-type {
+  background: linear-gradient(135deg, var(--accent-red), #990000) !important;
+  color: #fff !important;
+  box-shadow: 0 0 15px var(--accent-red-glow) !important;
+}
+[data-tab="second"] .center.aligned button.ui.labeled.icon.button:first-of-type:hover {
+  filter: brightness(1.2) !important;
+  box-shadow: 0 0 25px var(--accent-red-glow) !important;
+}
+[data-tab="second"] .center.aligned button.ui.labeled.icon.button:last-of-type {
+  background: linear-gradient(135deg, var(--accent-green), #008833) !important;
+  color: #fff !important;
+  box-shadow: 0 0 15px rgba(0,204,68,0.3) !important;
+}
+[data-tab="second"] .center.aligned button.ui.labeled.icon.button:last-of-type:hover {
+  filter: brightness(1.2) !important;
+  box-shadow: 0 0 25px rgba(0,204,68,0.4) !important;
 }
 
 /* Notification card */
