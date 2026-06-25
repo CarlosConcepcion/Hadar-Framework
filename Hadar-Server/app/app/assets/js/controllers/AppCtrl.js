@@ -43,7 +43,7 @@ app.controller("AppCtrl", ($scope) => {
 
     $appCtrl.logs = [];
 
-    $('.menu .item')
+    $('.menu .item, .tab-item')
         .tab();
     $('.ui.dropdown')
         .dropdown();
