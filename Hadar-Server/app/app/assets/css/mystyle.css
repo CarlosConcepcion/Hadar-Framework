@@ -152,7 +152,21 @@ body, html {
   border-bottom: 1px solid var(--border-color);
   padding: 0 16px;
 }
-.tab-item {
+.tab-bar.ui.menu {
+  background: var(--bg-secondary);
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: none;
+  margin: 0;
+  border-radius: 0;
+  min-height: auto;
+}
+.tab-bar.ui.menu .item {
+  border-radius: 0;
+  margin: 0;
+}
+.tab-item,
+.tab-bar.ui.menu .item {
   padding: 12px 24px;
   font-family: 'Rajdhani', sans-serif;
   font-size: 13px;
@@ -168,16 +182,20 @@ body, html {
   gap: 8px;
   -webkit-app-region: no-drag;
 }
-.tab-item:hover {
+.tab-item:hover,
+.tab-bar.ui.menu .item:hover {
   color: var(--text-primary);
   background: rgba(255,255,255,0.02);
 }
-.tab-item.active {
+.tab-item.active,
+.tab-bar.ui.menu .item.active {
   color: var(--accent-red);
   border-bottom-color: var(--accent-red);
   text-shadow: 0 0 20px var(--accent-red-glow);
+  background: transparent;
 }
-.tab-item i {
+.tab-item i,
+.tab-bar.ui.menu .item i {
   font-size: 16px;
 }
 
