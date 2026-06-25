@@ -4,25 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>Lab</title>
+    <title>Hadar Lab</title>
+
     <script>
-        if (typeof module === 'object') {
-            window.module = module;
-            module = undefined;
-        }
+        if (typeof module === 'object') { window.module = module; module = undefined; }
     </script>
 
+    <script src="assets/js/lib/jquery-3.1.1.min.js"></script>
+    <script src="../node_modules/fomantic-ui/dist/semantic.min.js"></script>
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/angular-route/angular-route.min.js"></script>
+    <script src="assets/js/lib/ng-infinite-scroll.min.js"></script>
+    <script src="assets/js/lib/leaflet.js"></script>
+    <script src="assets/js/controllers/LabCtrl.js"></script>
 
-    <script type="text/javascript" src="assets/js/lib/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="../node_modules/fomantic-ui/dist/semantic.min.js"></script>
-    <script type="text/javascript" src="../node_modules/angular/angular.js"></script>
-    <script type="text/javascript" src="../node_modules/angular-route/angular-route.min.js"></script>
-    <script type='text/javascript' src='assets/js/lib/ng-infinite-scroll.min.js'></script>
-    <script type="text/javascript" src="assets/js/lib/leaflet.js"></script>
-    <script type="text/javascript" src="assets/js/controllers/LabCtrl.js"></script>
-
-
-    <!-- Insert this line after script imports -->
     <script>
         if (window.module) module = window.module;
     </script>
@@ -30,83 +25,63 @@
     <link rel="stylesheet" href="assets/css/mystyle.css">
     <link rel="stylesheet" href="../node_modules/fomantic-ui/dist/semantic.min.css" />
     <link rel="stylesheet" href="assets/css/leaflet.css" />
-    <style>
-        #logy {
-            height: 158px;
-            /* Adjust the height value as per your preference */
-            overflow: scroll;
-        }
-    </style>
 
 </head>
 
-<body ng-controller="LabCtrl" class="draggable">
+<body ng-controller="LabCtrl" class="draggable" style="background:var(--bg-primary);">
 
-    <div class="ui grid h80">
-        <div class="row h10">
-            <div class="sixteen wide column">
-                <div class="ui inverted mini text labeled icon menu">
-                    <a class="item">
-                        <img src="assets/img/icon.png" /> </a>
-                    <div class="right  menu notDraggable">
-                        <button class="ui circular green button" ng-click="maximize()"
-                            style="font-size: 6px;height: 17px"></button>
-                        <button class="ui circular red button" ng-click="close()"
-                            style="font-size: 6px;height: 17px"></button>
-                    </div>
-                </div>
-            </div>
+    <!-- Lab Header -->
+    <div class="lab-header">
+        <div class="lab-header-left">
+            <img class="lab-header-icon" src="assets/img/icon.png" alt="H">
+            <span class="lab-header-text">HADAR LAB</span>
         </div>
-
-        <div class="row h15 notDraggable">
-            <div class="sixteen wide column">
-                <div class="ui mini borderless labeled icon fluid seven item menu">
-                    <a class="item" ng-click="goToPage('camera')">
-                        <i class="red photo icon"></i> Camera
-                    </a>
-                    <a class="item" ng-click="goToPage('fileManager')">
-                        <i class=" teal folder icon "></i> File Manager
-                    </a>
-                    <a class="item" ng-click="goToPage('mic')">
-                        <i class="blue unmute icon "></i> Mic
-                    </a>
-                    <a class="item " ng-click="goToPage('location')">
-                        <i class="violet marker icon "></i> Location
-                    </a>
-                    <a class="item " ng-click="goToPage('contacts')">
-                        <i class="purple users icon "></i> contacts
-                    </a>
-                    <a class="item " ng-click="goToPage('smsManager')">
-                        <i class="grey talk outline icon "></i> SMS
-                    </a>
-                    <a class="item " ng-click="goToPage('callsLogs')">
-                        <i class="black call icon "></i> Calls Logs
-                    </a>
-                </div>
-
-            </div>
-        </div>
-
-
-
-
-        <div class="row centered h75 notDraggable ">
-            <div class="sixteen wide column">
-                <div class="ui segment full">
-                    <div ng-view class="full">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-    <div class="ui bottom attached black message notDraggable " id="logy" style="overflow: scroll;">
-        <div ng-repeat="log in logs " class="log ">
-            <div class="w30 " style="display: inline-block " ng-bind="log.date "></div>
-            <div class="w65 " style="display: inline-block " ng-style="{ 'color':log.color} " ng-bind="log.msg "></div>
+        <div class="window-controls notDraggable">
+            <button class="window-btn maximize" ng-click="maximize()" title="Maximize"></button>
+            <button class="window-btn close" ng-click="close()" title="Close"></button>
         </div>
     </div>
+
+    <!-- Module Navigation -->
+    <div class="module-nav notDraggable">
+        <button class="module-btn" ng-click="goToPage('camera')">
+            <i class="red photo icon"></i> Camera
+        </button>
+        <button class="module-btn" ng-click="goToPage('fileManager')">
+            <i class="teal folder icon"></i> Files
+        </button>
+        <button class="module-btn" ng-click="goToPage('mic')">
+            <i class="blue unmute icon"></i> Mic
+        </button>
+        <button class="module-btn" ng-click="goToPage('location')">
+            <i class="violet marker icon"></i> Location
+        </button>
+        <button class="module-btn" ng-click="goToPage('contacts')">
+            <i class="purple users icon"></i> Contacts
+        </button>
+        <button class="module-btn" ng-click="goToPage('smsManager')">
+            <i class="grey talk outline icon"></i> SMS
+        </button>
+        <button class="module-btn" ng-click="goToPage('callsLogs')">
+            <i class="black call icon"></i> Calls
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="lab-content" style="height:calc(100vh - 110px);overflow-y:auto;">
+        <div class="ui segment full" style="background:var(--bg-card) !important;border:1px solid var(--border-color) !important;">
+            <div ng-view class="full"></div>
+        </div>
+    </div>
+
+    <!-- Console Log -->
+    <div class="console-log notDraggable" id="logy" style="height:120px;">
+        <div ng-repeat="log in logs" class="log">
+            <span class="log-date" ng-bind="log.date"></span>
+            <span ng-style="{'color':log.color}" ng-bind="log.msg"></span>
+        </div>
+    </div>
+
 </body>
 
 </html>
