@@ -61,6 +61,34 @@ body, html {
   font-family: 'Rajdhani', sans-serif;
   font-weight: 500;
   letter-spacing: 0.3px;
+  height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+/* All tab segments fill remaining space in flex body */
+.ui.bottom.attached.tab.segment {
+  flex: 1 1 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  background: var(--bg-primary) !important;
+}
+/* APK Builder tab gets its own scroll */
+[data-tab="second"] {
+  overflow-y: auto !important;
+}
+[data-tab="second"]::-webkit-scrollbar {
+  width: 6px;
+  display: block;
+}
+[data-tab="second"]::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+[data-tab="second"]::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+[data-tab="second"]::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-red);
 }
 
 /* Top menu tab bar */
@@ -87,15 +115,6 @@ body, html {
 .ui.right.mini.text.menu .ui.circular.orange.button { background: var(--accent-orange) !important; }
 .ui.right.mini.text.menu .ui.circular.green.button { background: var(--accent-green) !important; }
 .ui.right.mini.text.menu .ui.circular.red.button { background: var(--accent-red) !important; }
-
-/* Tab content panes */
-.ui.bottom.attached.tab.segment {
-  background: var(--bg-primary) !important;
-}
-/* APK Builder tab - ensure scroll */
-[data-tab="second"] {
-  overflow-y: auto !important;
-}
 
 /* Victims header segments */
 .ui.horizontal.segments .ui.segment {
