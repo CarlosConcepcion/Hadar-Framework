@@ -112,7 +112,7 @@
 
     invoke-virtual {v1, p2, v2, v2}, Landroid/content/pm/PackageManager;->setComponentEnabledSetting(Landroid/content/ComponentName;II)V
 
-    const-string p2, "AhMyth\'s icon has been revealed!"
+    const-string p2, "Hadar\'s icon has been revealed!"
 
     invoke-static {p1, p2, v0}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
 
