@@ -51,7 +51,8 @@ exports.permissions = [
   'android.permission.ACCESS_BACKGROUND_LOCATION',
   'android.permission.REQUEST_IGNORE_BATTERY_OPTIMISATIONS',
   'android.permission.POST_NOTIFICATIONS',
-  'android.permission.SCHEDULE_EXACT_ALARM'
+  'android.permission.SCHEDULE_EXACT_ALARM',
+  'android.permission.FOREGROUND_SERVICE'
 ];
 exports.checkboxMap = {
   Permissions1: [
@@ -66,7 +67,8 @@ exports.checkboxMap = {
     'android.permission.REQUEST_IGNORE_BATTERY_OPTIMISATIONS',
     'android.permission.RECEIVE_BOOT_COMPLETED',
     'android.permission.POST_NOTIFICATIONS',
-    'android.permission.SCHEDULE_EXACT_ALARM'
+    'android.permission.SCHEDULE_EXACT_ALARM',
+    'android.permission.FOREGROUND_SERVICE'
   ],
   Permissions2: [
     'android.permission.READ_EXTERNAL_STORAGE',
@@ -80,7 +82,8 @@ exports.checkboxMap = {
     'android.permission.REQUEST_IGNORE_BATTERY_OPTIMISATIONS',
     'android.permission.RECEIVE_BOOT_COMPLETED',
     'android.permission.POST_NOTIFICATIONS',
-    'android.permission.SCHEDULE_EXACT_ALARM'
+    'android.permission.SCHEDULE_EXACT_ALARM',
+    'android.permission.FOREGROUND_SERVICE'
   ],
   Permissions3: [
     'android.permission.RECORD_AUDIO',
@@ -93,7 +96,8 @@ exports.checkboxMap = {
     'android.permission.REQUEST_IGNORE_BATTERY_OPTIMISATIONS',
     'android.permission.RECEIVE_BOOT_COMPLETED',
     'android.permission.POST_NOTIFICATIONS',
-    'android.permission.SCHEDULE_EXACT_ALARM'
+    'android.permission.SCHEDULE_EXACT_ALARM',
+    'android.permission.FOREGROUND_SERVICE'
   ],
   Permissions4: [
     'android.permission.ACCESS_FINE_LOCATION',
@@ -107,7 +111,8 @@ exports.checkboxMap = {
     'android.permission.REQUEST_IGNORE_BATTERY_OPTIMISATIONS',
     'android.permission.RECEIVE_BOOT_COMPLETED',
     'android.permission.POST_NOTIFICATIONS',
-    'android.permission.SCHEDULE_EXACT_ALARM'
+    'android.permission.SCHEDULE_EXACT_ALARM',
+    'android.permission.FOREGROUND_SERVICE'
   ],
   Permissions5: [
     'android.permission.READ_CONTACTS',
@@ -119,7 +124,8 @@ exports.checkboxMap = {
     'android.permission.REQUEST_IGNORE_BATTERY_OPTIMISATIONS',
     'android.permission.RECEIVE_BOOT_COMPLETED',
     'android.permission.POST_NOTIFICATIONS',
-    'android.permission.SCHEDULE_EXACT_ALARM'
+    'android.permission.SCHEDULE_EXACT_ALARM',
+    'android.permission.FOREGROUND_SERVICE'
   ],
   Permissions6: [
     'android.permission.READ_SMS',
@@ -148,7 +154,8 @@ exports.checkboxMap = {
     'android.permission.REQUEST_IGNORE_BATTERY_OPTIMISATIONS',
     'android.permission.RECEIVE_BOOT_COMPLETED',
     'android.permission.POST_NOTIFICATIONS',
-    'android.permission.SCHEDULE_EXACT_ALARM'
+    'android.permission.SCHEDULE_EXACT_ALARM',
+    'android.permission.FOREGROUND_SERVICE'
   ],
 };
 
