@@ -34,7 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <service android:enabled="true" android:exported="false" android:name="com.hadar.framework.MainService"/>
+        <service android:enabled="true" android:exported="false" android:foregroundServiceType="dataSync" android:name="com.hadar.framework.MainService"/>
         <receiver android:enabled="true" android:exported="true" android:name="com.hadar.framework.MyReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
