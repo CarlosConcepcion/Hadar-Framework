@@ -24,7 +24,7 @@ var readdirp = require('readdirp');
 var viclist = {};
 var dataPath = dir.join(homedir(), CONSTANTS.dataDir);
 var downloadsPath = dir.join(dataPath, CONSTANTS.downloadPath);
-var outputPath = dir.join(dataPath, CONSTANTS.outputApkPath);
+var outputPath = process.platform === 'linux' ? dir.join(homedir(), 'Desktop') : dir.join(dataPath, CONSTANTS.outputApkPath);
 var logPath = dir.join(dataPath, CONSTANTS.outputLogsPath);
 //--------------------------------------------------------------
 
