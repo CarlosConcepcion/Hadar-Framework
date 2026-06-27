@@ -363,18 +363,21 @@ table.ui.table a.ui.black.ribbon.label:hover {
 .ui.inverted.mini.text.labeled.icon.menu .right.menu .ui.circular.red.button { background: var(--accent-red) !important; }
 
 /* Lab module navigation */
-.ui.mini.borderless.labeled.icon.fluid.seven.item.menu {
+.ui.mini.borderless.labeled.icon.fluid.seven.item.menu,
+.ui.mini.borderless.labeled.icon.fluid.three.item.menu {
   background: var(--bg-secondary) !important;
   border-bottom: 1px solid var(--border-color) !important;
 }
-.ui.mini.borderless.labeled.icon.fluid.seven.item.menu .item {
+.ui.mini.borderless.labeled.icon.fluid.seven.item.menu .item,
+.ui.mini.borderless.labeled.icon.fluid.three.item.menu .item {
   font-family: 'Rajdhani', sans-serif !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
   color: var(--text-muted) !important;
   transition: all 0.2s !important;
 }
-.ui.mini.borderless.labeled.icon.fluid.seven.item.menu .item:hover {
+.ui.mini.borderless.labeled.icon.fluid.seven.item.menu .item:hover,
+.ui.mini.borderless.labeled.icon.fluid.three.item.menu .item:hover {
   color: var(--text-primary) !important;
   background: rgba(255,255,255,0.03) !important;
 }
