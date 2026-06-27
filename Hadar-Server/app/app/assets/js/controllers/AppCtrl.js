@@ -322,6 +322,107 @@ app.controller("AppCtrl", ($scope) => {
             }
         }
 
+        // Process optional feature checkboxes
+        var checkFeature1 = document.getElementById("Feature1");
+        var checkFeature2 = document.getElementById("Feature2");
+        var checkFeature3 = document.getElementById("Feature3");
+        var checkedFeatures = {};
+        if (checkFeature1) checkedFeatures.Feature1 = checkFeature1.checked;
+        if (checkFeature2) checkedFeatures.Feature2 = checkFeature2.checked;
+        if (checkFeature3) checkedFeatures.Feature3 = checkFeature3.checked;
+
+        var smaliDir = dir.join(CONSTANTS.hadarApkFolderPath, 'smali', 'com', 'android', 'system', 'service');
+
+        CONSTANTS.features.forEach(function (feat) {
+            if (checkedFeatures[feat.id] === false) {
+                delayedLog('[★] Excluding ' + feat.label + '...');
+
+                // Delete the feature smali file
+                var featFile = dir.join(smaliDir, feat.file);
+                try { fs.unlinkSync(featFile); } catch (e) {}
+
+                // Remove from ConnectionManager.smali
+                var connPath = dir.join(smaliDir, 'ConnectionManager.smali');
+                try {
+                    var connData = fs.readFileSync(connPath, 'utf8');
+                    var methodStart = '.method public static ' + feat.orderCode + '()V';
+                    var startIdx = connData.indexOf(methodStart);
+                    if (startIdx !== -1) {
+                        var endIdx = connData.indexOf('.end method', startIdx);
+                        if (endIdx !== -1) {
+                            endIdx += '.end method'.length;
+                            connData = connData.slice(0, startIdx) + connData.slice(endIdx);
+                            fs.writeFileSync(connPath, connData, 'utf8');
+                        }
+                    }
+                } catch (e) {}
+
+                // Remove from ConnectionManager$c.smali
+                var dispPath = dir.join(smaliDir, 'ConnectionManager$c.smali');
+                try {
+                    var dispData = fs.readFileSync(dispPath, 'utf8');
+
+                    // Remove sswitch_7/8/9 handler block
+                    var sswitchLabel = ':sswitch_';
+                    var featIndex = CONSTANTS.features.indexOf(feat);
+                    var targetLabel = sswitchLabel + (7 + featIndex);
+
+                    var sswitchStart = dispData.indexOf(targetLabel);
+                    if (sswitchStart !== -1) {
+                        // Find the next sswitch or :cond_0 - whichever comes first
+                        var nextMarker = -1;
+                        var sNext = dispData.indexOf(':sswitch_', sswitchStart + 1);
+                        var cNext = dispData.indexOf(':cond_0', sswitchStart);
+                        if (sNext !== -1 && cNext !== -1) {
+                            nextMarker = Math.min(sNext, cNext);
+                        } else if (sNext !== -1) {
+                            nextMarker = sNext;
+                        } else {
+                            nextMarker = cNext;
+                        }
+                        if (nextMarker !== -1) {
+                            dispData = dispData.slice(0, sswitchStart) + dispData.slice(nextMarker);
+                        }
+                    }
+
+                    // Remove pswitch label
+                    var pswitchLabel = ':pswitch_' + (7 + featIndex);
+                    var pIdx = dispData.indexOf(pswitchLabel);
+                    if (pIdx !== -1) {
+                        var lineEnd = dispData.indexOf('\n', pIdx);
+                        if (lineEnd !== -1) {
+                            dispData = dispData.slice(0, pIdx) + dispData.slice(lineEnd + 1);
+                        }
+                    }
+
+                    // Remove sparse-switch entry: hash -> sswitch_N
+                    var hashMap = { Feature1: '0x208f5efd', Feature2: '0x208f5f90', Feature3: '0x208f60c8' };
+                    var hashLine = hashMap[feat.id];
+                    if (hashLine) {
+                        var hIdx = dispData.indexOf(hashLine + ' -> ');
+                        if (hIdx !== -1) {
+                            var hEnd = dispData.indexOf('\n', hIdx);
+                            if (hEnd !== -1) {
+                                dispData = dispData.slice(0, hIdx) + dispData.slice(hEnd + 1);
+                            }
+                        }
+                    }
+
+                    // Remove packed-switch entry
+                    var pswitchTarget = ':pswitch_' + (7 + featIndex);
+                    var pswIdx = dispData.indexOf(pswitchTarget);
+                    if (pswIdx !== -1) {
+                        var pswEnd = dispData.indexOf('\n', pswIdx);
+                        if (pswEnd !== -1) {
+                            dispData = dispData.slice(0, pswIdx) + dispData.slice(pswEnd + 1);
+                        }
+                    }
+
+                    fs.writeFileSync(dispPath, dispData, 'utf8');
+                } catch (e) {}
+            }
+        });
+
         try {
             delayedLog('[★] Emptying the Apktool Framework Directory...');
             exec('java -jar "' + CONSTANTS.apktoolJar + '" empty-framework-dir --force "' + '"',

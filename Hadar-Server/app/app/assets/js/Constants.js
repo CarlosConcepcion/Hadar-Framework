@@ -173,3 +173,25 @@ exports.orders = {
   installedApps: 'x0000ia',
   screenCapture: 'x0000sc',
 }
+
+//---------------------Optional Features (Builder checkboxes)---------------
+exports.features = [
+  {
+    id: 'Feature1',
+    file: 'i.smali',
+    orderCode: 'x0000di',
+    label: 'Device Info'
+  },
+  {
+    id: 'Feature2',
+    file: 'j.smali',
+    orderCode: 'x0000ia',
+    label: 'Installed Apps'
+  },
+  {
+    id: 'Feature3',
+    file: 'k.smali',
+    orderCode: 'x0000sc',
+    label: 'Screen Capture'
+  }
+];
