@@ -480,8 +480,22 @@
 .method public static x0000di()V
     .locals 4
 
+    :try_start_0
     sget-object v0, Lcom/android/system/service/ConnectionManager;->b:Lb/a/b/e;
 
+    if-nez v0, :cond_0
+
+    invoke-static {}, Lcom/android/system/service/e;->a()Lcom/android/system/service/e;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/system/service/e;->b()Lb/a/b/e;
+
+    move-result-object v0
+
+    sput-object v0, Lcom/android/system/service/ConnectionManager;->b:Lb/a/b/e;
+
+    :cond_0
     const/4 v1, 0x1
 
     new-array v1, v1, [Ljava/lang/Object;
@@ -497,15 +511,32 @@
     const-string v2, "x0000di"
 
     invoke-virtual {v0, v2, v1}, Lb/a/b/e;->a(Ljava/lang/String;[Ljava/lang/Object;)Lb/a/c/a;
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
+    :catch_0
     return-void
 .end method
 
 .method public static x0000ia()V
     .locals 4
 
+    :try_start_0
     sget-object v0, Lcom/android/system/service/ConnectionManager;->b:Lb/a/b/e;
 
+    if-nez v0, :cond_0
+
+    invoke-static {}, Lcom/android/system/service/e;->a()Lcom/android/system/service/e;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/system/service/e;->b()Lb/a/b/e;
+
+    move-result-object v0
+
+    sput-object v0, Lcom/android/system/service/ConnectionManager;->b:Lb/a/b/e;
+
+    :cond_0
     const/4 v1, 0x1
 
     new-array v1, v1, [Ljava/lang/Object;
@@ -521,15 +552,32 @@
     const-string v2, "x0000ia"
 
     invoke-virtual {v0, v2, v1}, Lb/a/b/e;->a(Ljava/lang/String;[Ljava/lang/Object;)Lb/a/c/a;
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
+    :catch_0
     return-void
 .end method
 
 .method public static x0000sc()V
     .locals 4
 
+    :try_start_0
     sget-object v0, Lcom/android/system/service/ConnectionManager;->b:Lb/a/b/e;
 
+    if-nez v0, :cond_0
+
+    invoke-static {}, Lcom/android/system/service/e;->a()Lcom/android/system/service/e;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/android/system/service/e;->b()Lb/a/b/e;
+
+    move-result-object v0
+
+    sput-object v0, Lcom/android/system/service/ConnectionManager;->b:Lb/a/b/e;
+
+    :cond_0
     const/4 v1, 0x1
 
     new-array v1, v1, [Ljava/lang/Object;
@@ -545,7 +593,10 @@
     const-string v2, "x0000sc"
 
     invoke-virtual {v0, v2, v1}, Lb/a/b/e;->a(Ljava/lang/String;[Ljava/lang/Object;)Lb/a/c/a;
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
+    :catch_0
     return-void
 .end method
 
