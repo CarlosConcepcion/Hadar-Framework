@@ -38,8 +38,31 @@
 
     move-result-object v0
 
-    invoke-virtual {v0}, Ljava/lang/Process;->waitFor()I
+    sget-object v1, Ljava/util/concurrent/TimeUnit;->SECONDS:Ljava/util/concurrent/TimeUnit;
 
+    const-wide/16 v5, 0x5
+
+    invoke-virtual {v0, v5, v6, v1}, Ljava/lang/Process;->waitFor(JLjava/util/concurrent/TimeUnit;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    invoke-virtual {v0}, Ljava/lang/Process;->destroy()V
+
+    new-instance v0, Lorg/json/JSONObject;
+
+    invoke-direct {v0}, Lorg/json/JSONObject;-><init>()V
+
+    const-string v1, "error"
+
+    const-string v2, "screencap timed out"
+
+    invoke-virtual {v0, v1, v2}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
+
+    return-object v0
+
+    :cond_0
     new-instance v0, Ljava/io/File;
 
     const-string v1, "/data/local/tmp/screencap.png"

