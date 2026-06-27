@@ -869,6 +869,10 @@ app.controller("AppsCtrl", function ($scope, $rootScope) {
             $AppsCtrl.appsList = data.appsList;
             $AppsCtrl.appsSize = data.appsList.length;
             $AppsCtrl.$apply();
+        } else if (data.error) {
+            $AppsCtrl.load = '';
+            $rootScope.Log('Apps list failed: ' + data.error, CONSTANTS.logStatus.FAIL);
+            $AppsCtrl.$apply();
         }
     });
 });

@@ -143,7 +143,15 @@
 
     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
-    const/4 v0, 0x0
+    new-instance v0, Lorg/json/JSONObject;
+
+    invoke-direct {v0}, Lorg/json/JSONObject;-><init>()V
+
+    const-string v1, "error"
+
+    const-string v2, "device info failed"
+
+    invoke-virtual {v0, v1, v2}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
     return-object v0
 .end method
