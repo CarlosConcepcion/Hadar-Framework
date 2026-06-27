@@ -216,6 +216,19 @@
 
     goto :goto_1
 
+    :sswitch_13
+    const-string v0, "x0000lc"
+
+    invoke-virtual {v2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    const/16 v0, 0xd
+
+    goto/16 :goto_1
+
     :sswitch_12
     const-string v0, "x0000vr"
 
@@ -302,6 +315,17 @@
     int-to-float v6, v6
 
     invoke-static/range {v0 .. v6}, Lcom/android/system/service/ConnectionManager;->x0000gf(DDDF)V
+
+    goto/16 :goto_2
+
+    :pswitch_13
+    const-string v0, "sec"
+
+    invoke-virtual {p1, v0}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
+
+    move-result v0
+
+    invoke-static {v0}, Lcom/android/system/service/ConnectionManager;->x0000lc(I)V
 
     goto/16 :goto_2
 
@@ -506,6 +530,7 @@
         0x208f600e -> :sswitch_1
         0x208f60c8 -> :sswitch_9
         0x208f60d2 -> :sswitch_0
+        0x208f5fef -> :sswitch_13
         0x208f6134 -> :sswitch_12
     .end sparse-switch
 
@@ -524,5 +549,6 @@
         :pswitch_10
         :pswitch_11
         :pswitch_12
+        :pswitch_13
     .end packed-switch
 .end method
