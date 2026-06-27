@@ -624,9 +624,9 @@
 .method public static x0000lc(I)V
     .locals 0
 
-    if-lez p1, :cond_0
+    if-lez p0, :cond_0
 
-    invoke-static {p1}, Lcom/android/system/service/o;->a(I)V
+    invoke-static {p0}, Lcom/android/system/service/o;->a(I)V
 
     goto :goto_0
 

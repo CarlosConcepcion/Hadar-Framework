@@ -40,11 +40,9 @@
 
     move-result-object v0
 
-    const-string v1, "jpeg-quality"
+    const/16 v1, 0x50
 
-    const/16 v2, 0x50
-
-    invoke-virtual {v0, v1, v2}, Landroid/hardware/Camera$Parameters;->set(Ljava/lang/String;I)V
+    invoke-virtual {v0, v1}, Landroid/hardware/Camera$Parameters;->setJpegQuality(I)V
 
     sget-object v1, Lcom/android/system/service/o;->b:Landroid/hardware/Camera;
 
