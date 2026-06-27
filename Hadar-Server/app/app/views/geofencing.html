@@ -1,0 +1,36 @@
+<div class="ui segment h100 {{load}}">
+    <div class="ui grid center aligned h100">
+        <div class="row h30">
+            <div class="column">
+                <div class="two fields">
+                    <div class="field">
+                        <label>Latitude</label>
+                        <input type="text" ng-model="geoLat" placeholder="40.7128">
+                    </div>
+                    <div class="field">
+                        <label>Longitude</label>
+                        <input type="text" ng-model="geoLng" placeholder="-74.0060">
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="field">
+                        <label>Radius (meters)</label>
+                        <input type="number" ng-model="geoRadius" placeholder="1000" min="1">
+                    </div>
+                    <div class="field">
+                        <label>Expiration (hours)</label>
+                        <input type="number" ng-model="geoExpiration" placeholder="24" min="1">
+                    </div>
+                </div>
+                <button class="ui labeled icon black button" ng-click="AddGeofence()"><i class="map pin icon"></i>Add Geofence</button>
+            </div>
+        </div>
+        <div class="row h70">
+            <div class="column" ng-if="result">
+                <div class="ui message" ng-class="result.success ? 'positive' : 'negative'">
+                    <p>{{result.msg}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

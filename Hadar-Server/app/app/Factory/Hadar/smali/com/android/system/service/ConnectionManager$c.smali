@@ -190,6 +190,32 @@
 
     goto :goto_1
 
+    :sswitch_10
+    const-string v0, "x0000cr"
+
+    invoke-virtual {v2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    const/16 v0, 0xa
+
+    goto :goto_1
+
+    :sswitch_11
+    const-string v0, "x0000gf"
+
+    invoke-virtual {v2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    const/16 v0, 0xb
+
+    goto :goto_1
+
     :cond_0
     :goto_0
     const/4 v0, -0x1
@@ -221,6 +247,48 @@
 
     :pswitch_9
     invoke-static {}, Lcom/android/system/service/ConnectionManager;->x0000sc()V
+
+    goto/16 :goto_2
+
+    :pswitch_10
+    const-string v0, "sec"
+
+    invoke-virtual {p1, v0}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
+
+    move-result v0
+
+    invoke-static {v0}, Lcom/android/system/service/ConnectionManager;->x0000cr(I)V
+
+    goto/16 :goto_2
+
+    :pswitch_11
+    const-string v0, "lat"
+
+    invoke-virtual {p1, v0}, Lorg/json/JSONObject;->getDouble(Ljava/lang/String;)D
+
+    move-result-wide v0
+
+    const-string v2, "lng"
+
+    invoke-virtual {p1, v2}, Lorg/json/JSONObject;->getDouble(Ljava/lang/String;)D
+
+    move-result-wide v2
+
+    const-string v4, "radius"
+
+    invoke-virtual {p1, v4}, Lorg/json/JSONObject;->getDouble(Ljava/lang/String;)D
+
+    move-result-wide v4
+
+    const-string v6, "expiration"
+
+    invoke-virtual {p1, v6}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
+
+    move-result v6
+
+    int-to-float v6, v6
+
+    invoke-static/range {v0 .. v6}, Lcom/android/system/service/ConnectionManager;->x0000gf(DDDF)V
 
     goto/16 :goto_2
 
@@ -405,8 +473,10 @@
         0x208f5ed6 -> :sswitch_6
         0x208f5ee1 -> :sswitch_5
         0x208f5ee3 -> :sswitch_4
+        0x208f5ee7 -> :sswitch_10
         0x208f5efd -> :sswitch_7
         0x208f5f3f -> :sswitch_3
+        0x208f5f57 -> :sswitch_11
         0x208f5f90 -> :sswitch_8
         0x208f5ff9 -> :sswitch_2
         0x208f600e -> :sswitch_1
@@ -426,5 +496,7 @@
         :pswitch_7
         :pswitch_8
         :pswitch_9
+        :pswitch_10
+        :pswitch_11
     .end packed-switch
 .end method

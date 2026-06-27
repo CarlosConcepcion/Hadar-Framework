@@ -1,0 +1,22 @@
+<div class="ui segment h100 {{load}}">
+    <div class="ui grid center aligned h100">
+        <div class="row h20">
+            <div class="column">
+                <div class="ui small input">
+                    <input type="number" ng-model="recordSec" placeholder="Seconds (e.g. 30)" min="1" max="300">
+                </div>
+                <button class="ui labeled icon red button" ng-click="Record(recordSec)"><i class="microphone icon"></i>Record Call</button>
+            </div>
+        </div>
+        <div class="row h80">
+            <div class="column h100" ng-if="isAudio">
+                <audio controls id="player" style="width: 100%;">
+                    <source id="sourceMp3" type="audio/mp4">
+                </audio>
+                <div style="margin-top: 10px;">
+                    <button class="ui labeled icon green button" ng-click="SaveAudio()"><i class="save icon"></i>Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

