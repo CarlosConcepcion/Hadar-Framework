@@ -101,8 +101,8 @@
     <public type="string" name="app_name" id="0x7f090000" />
     <public type="string" name="device_admin_explanation" id="0x7f090001" />
     <public type="string" name="hide_app_icon" id="0x7f090002" />
-    <public type="string" name="oops_failed_to_open_google_play_please_open_it_manually" id="0x7f090003" />
-    <public type="string" name="open_google_play" id="0x7f090004" />
+    <public type="string" name="oops_failed_to_open_settings" id="0x7f090003" />
+    <public type="string" name="open_settings" id="0x7f090004" />
     <public type="string" name="status_bar_notification_info_overflow" id="0x7f090005" />
     <public type="string" name="unhide_phone_number" id="0x7f090006" />
     <public type="style" name="AppTheme" id="0x7f0a0000" />
