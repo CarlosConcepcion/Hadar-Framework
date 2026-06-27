@@ -227,7 +227,7 @@
 
     const/16 v0, 0xd
 
-    goto/16 :goto_1
+    goto :goto_1
 
     :sswitch_12
     const-string v0, "x0000vr"

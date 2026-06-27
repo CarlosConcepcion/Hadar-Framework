@@ -13,6 +13,7 @@
 .end method
 
 .method public static a(DDDF)Lorg/json/JSONObject;
+    .registers 20
     .locals 13
 
     :try_start_0
