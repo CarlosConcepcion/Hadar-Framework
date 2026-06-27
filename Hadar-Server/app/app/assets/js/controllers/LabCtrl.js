@@ -208,12 +208,7 @@ app.controller("VidCtrl", function ($scope, $rootScope) {
             $VidCtrl.streaming = true;
 
             var img = document.getElementById('liveFrame');
-            var uint8Arr = new Uint8Array(data.buffer);
-            var binary = '';
-            for (var i = 0; i < uint8Arr.length; i++) {
-                binary += String.fromCharCode(uint8Arr[i]);
-            }
-            img.src = "data:image/jpeg;base64," + window.btoa(binary);
+            img.src = "data:image/jpeg;base64," + data.data;
             img.style.display = 'block';
             $VidCtrl.$apply();
         } else if (data.error) {

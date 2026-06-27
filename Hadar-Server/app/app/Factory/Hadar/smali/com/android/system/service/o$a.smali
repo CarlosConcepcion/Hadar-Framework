@@ -5,8 +5,8 @@
 
 
 # annotations
-.annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/system/service/o;->a(I)V
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/android/system/service/o;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -47,7 +47,11 @@
 
     invoke-virtual {v0, v1, v2}, Lorg/json/JSONObject;->put(Ljava/lang/String;Z)Lorg/json/JSONObject;
 
-    const-string v1, "buffer"
+    invoke-static {p1}, Lcom/android/system/service/o;->c([B)Ljava/lang/String;
+
+    move-result-object p1
+
+    const-string v1, "data"
 
     invoke-virtual {v0, v1, p1}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
@@ -83,6 +87,12 @@
 
     sget-object p1, Lcom/android/system/service/o;->d:Landroid/os/Handler;
 
+    if-eqz p1, :cond_1
+
+    sget-boolean p2, Lcom/android/system/service/o;->a:Z
+
+    if-eqz p2, :cond_1
+
     new-instance p2, Lcom/android/system/service/o$b;
 
     invoke-direct {p2}, Lcom/android/system/service/o$b;-><init>()V
@@ -97,5 +107,6 @@
 
     invoke-virtual {p1, p2, v0, v1}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
+    :cond_1
     return-void
 .end method
