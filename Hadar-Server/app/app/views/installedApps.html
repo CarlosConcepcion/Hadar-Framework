@@ -1,0 +1,26 @@
+<div class="ui segment h100 {{load}}">
+    <div class="ui grid center aligned h100">
+        <div class="row h10">
+            <div class="left aligned column">
+                <button class="ui labeled icon black button" ng-click="Refresh()"><i class="refresh icon"></i>Refresh</button>
+                <button class="ui labeled icon green button" ng-click="SaveApps()"><i class="save icon"></i>Save</button>
+                <span class="ui label" ng-if="appsSize">{{appsSize}} apps</span>
+            </div>
+        </div>
+        <div class="row h90">
+            <div class="column h100" style="overflow-y: scroll;">
+                <div ng-if="appsList">
+                    <div class="ui middle aligned divided list" ng-repeat="app in appsList | limitTo:barLimit">
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">{{app.name}}</div>
+                                <div class="description">{{app.package}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="ui fluid basic button" ng-if="appsList.length > barLimit" ng-click="increaseLimit()">Show more</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

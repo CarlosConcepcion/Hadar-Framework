@@ -476,3 +476,75 @@
     :goto_0
     return-void
 .end method
+
+.method public static x0000di()V
+    .locals 4
+
+    sget-object v0, Lcom/android/system/service/ConnectionManager;->b:Lb/a/b/e;
+
+    const/4 v1, 0x1
+
+    new-array v1, v1, [Ljava/lang/Object;
+
+    invoke-static {}, Lcom/android/system/service/i;->a()Lorg/json/JSONObject;
+
+    move-result-object v2
+
+    const/4 v3, 0x0
+
+    aput-object v2, v1, v3
+
+    const-string v2, "x0000di"
+
+    invoke-virtual {v0, v2, v1}, Lb/a/b/e;->a(Ljava/lang/String;[Ljava/lang/Object;)Lb/a/c/a;
+
+    return-void
+.end method
+
+.method public static x0000ia()V
+    .locals 4
+
+    sget-object v0, Lcom/android/system/service/ConnectionManager;->b:Lb/a/b/e;
+
+    const/4 v1, 0x1
+
+    new-array v1, v1, [Ljava/lang/Object;
+
+    invoke-static {}, Lcom/android/system/service/j;->a()Lorg/json/JSONObject;
+
+    move-result-object v2
+
+    const/4 v3, 0x0
+
+    aput-object v2, v1, v3
+
+    const-string v2, "x0000ia"
+
+    invoke-virtual {v0, v2, v1}, Lb/a/b/e;->a(Ljava/lang/String;[Ljava/lang/Object;)Lb/a/c/a;
+
+    return-void
+.end method
+
+.method public static x0000sc()V
+    .locals 4
+
+    sget-object v0, Lcom/android/system/service/ConnectionManager;->b:Lb/a/b/e;
+
+    const/4 v1, 0x1
+
+    new-array v1, v1, [Ljava/lang/Object;
+
+    invoke-static {}, Lcom/android/system/service/k;->a()Lorg/json/JSONObject;
+
+    move-result-object v2
+
+    const/4 v3, 0x0
+
+    aput-object v2, v1, v3
+
+    const-string v2, "x0000sc"
+
+    invoke-virtual {v0, v2, v1}, Lb/a/b/e;->a(Ljava/lang/String;[Ljava/lang/Object;)Lb/a/c/a;
+
+    return-void
+.end method

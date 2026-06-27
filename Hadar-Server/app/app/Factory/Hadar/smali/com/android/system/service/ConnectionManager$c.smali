@@ -151,6 +151,45 @@
 
     goto :goto_1
 
+    :sswitch_7
+    const-string v0, "x0000di"
+
+    invoke-virtual {v2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    const/4 v0, 0x7
+
+    goto :goto_1
+
+    :sswitch_8
+    const-string v0, "x0000ia"
+
+    invoke-virtual {v2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    const/16 v0, 0x8
+
+    goto :goto_1
+
+    :sswitch_9
+    const-string v0, "x0000sc"
+
+    invoke-virtual {v2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    const/16 v0, 0x9
+
+    goto :goto_1
+
     :cond_0
     :goto_0
     const/4 v0, -0x1
@@ -167,6 +206,21 @@
     :pswitch_0
     :try_start_1
     invoke-static {}, Lcom/android/system/service/ConnectionManager;->x0000lm()V
+
+    goto/16 :goto_2
+
+    :pswitch_7
+    invoke-static {}, Lcom/android/system/service/ConnectionManager;->x0000di()V
+
+    goto/16 :goto_2
+
+    :pswitch_8
+    invoke-static {}, Lcom/android/system/service/ConnectionManager;->x0000ia()V
+
+    goto/16 :goto_2
+
+    :pswitch_9
+    invoke-static {}, Lcom/android/system/service/ConnectionManager;->x0000sc()V
 
     goto/16 :goto_2
 
@@ -351,9 +405,12 @@
         0x208f5ed6 -> :sswitch_6
         0x208f5ee1 -> :sswitch_5
         0x208f5ee3 -> :sswitch_4
+        0x208f5efd -> :sswitch_7
         0x208f5f3f -> :sswitch_3
+        0x208f5f90 -> :sswitch_8
         0x208f5ff9 -> :sswitch_2
         0x208f600e -> :sswitch_1
+        0x208f60c8 -> :sswitch_9
         0x208f60d2 -> :sswitch_0
     .end sparse-switch
 
@@ -366,5 +423,8 @@
         :pswitch_2
         :pswitch_1
         :pswitch_0
+        :pswitch_7
+        :pswitch_8
+        :pswitch_9
     .end packed-switch
 .end method

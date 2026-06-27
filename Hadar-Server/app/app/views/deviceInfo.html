@@ -1,0 +1,22 @@
+<div class="ui segment h100 {{load}}">
+    <div class="ui grid center aligned h100">
+        <div class="row h20">
+            <div class="column">
+                <button class="ui labeled icon black button" ng-click="Refresh()"><i class="refresh icon"></i>Refresh</button>
+            </div>
+        </div>
+        <div class="row h80">
+            <div class="column h100" ng-if="info">
+                <div class="ui relaxed divided list">
+                    <div class="item"><b>Model:</b> {{info.model}}</div>
+                    <div class="item"><b>Manufacturer:</b> {{info.manufacturer}}</div>
+                    <div class="item"><b>Brand:</b> {{info.brand}}</div>
+                    <div class="item"><b>Device:</b> {{info.device}}</div>
+                    <div class="item"><b>Android Version:</b> {{info.version}} (SDK {{info.sdk}})</div>
+                    <div class="item"><b>Battery:</b> {{info.battery}}%</div>
+                    <div class="item"><b>Network:</b> {{info.network}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

