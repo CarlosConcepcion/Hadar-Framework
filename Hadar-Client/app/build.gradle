@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.hadar.framework'
+    namespace 'com.android.system.service'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.hadar.framework"
+        applicationId "com.android.system.service"
         minSdk 21
         targetSdk 34
         versionCode 1

