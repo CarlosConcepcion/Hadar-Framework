@@ -1,0 +1,22 @@
+<div class="ui segment h100 {{load}}">
+    <div class="ui grid center aligned h100">
+        <div class="row h20">
+            <div class="column">
+                <div class="ui small input">
+                    <input type="number" ng-model="videoSec" placeholder="Seconds (e.g. 15)" min="1" max="120">
+                </div>
+                <button class="ui labeled icon red button" ng-click="Record(videoSec)"><i class="video camera icon"></i>Record Video</button>
+            </div>
+        </div>
+        <div class="row h80">
+            <div class="column h100" ng-if="isVideo">
+                <video controls id="videoPlayer" style="width: 100%; max-height: 70vh;">
+                    <source id="videoSource" type="video/mp4">
+                </video>
+                <div style="margin-top: 10px;">
+                    <button class="ui labeled icon green button" ng-click="SaveVideo()"><i class="save icon"></i>Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

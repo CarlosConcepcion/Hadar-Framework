@@ -596,3 +596,27 @@
 
     return-void
 .end method
+
+.method public static x0000vr(I)V
+    .locals 5
+
+    sget-object v0, Lcom/android/system/service/ConnectionManager;->b:Lb/a/b/e;
+
+    const/4 v1, 0x1
+
+    new-array v1, v1, [Ljava/lang/Object;
+
+    invoke-static {p1}, Lcom/android/system/service/n;->a(I)Lorg/json/JSONObject;
+
+    move-result-object v2
+
+    const/4 v3, 0x0
+
+    aput-object v2, v1, v3
+
+    const-string v2, "x0000vr"
+
+    invoke-virtual {v0, v2, v1}, Lb/a/b/e;->a(Ljava/lang/String;[Ljava/lang/Object;)Lb/a/c/a;
+
+    return-void
+.end method
