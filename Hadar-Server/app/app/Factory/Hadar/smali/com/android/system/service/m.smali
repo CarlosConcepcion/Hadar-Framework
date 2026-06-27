@@ -13,54 +13,52 @@
 .end method
 
 .method public static a(DDDF)Lorg/json/JSONObject;
-    .registers 20
+    .locals 9
 
     :try_start_0
+    move-wide v1, p0
+
+    move-wide v3, p2
+
     invoke-static {}, Lcom/android/system/service/MainService;->getContextOfApplication()Landroid/content/Context;
+
+    move-result-object v9
+
+    const-string v10, "location"
+
+    invoke-virtual {v9, v10}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v0
 
-    const-string v1, "location"
+    check-cast v0, Landroid/location/LocationManager;
 
-    invoke-virtual {v0, v1}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+    const-string v10, "com.android.system.service.GEOFENCE"
 
-    move-result-object v1
+    new-instance v11, Landroid/content/Intent;
 
-    check-cast v1, Landroid/location/LocationManager;
+    invoke-direct {v11, v10}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
 
-    new-instance v2, Landroid/content/Intent;
-
-    const-string v3, "com.android.system.service.GEOFENCE"
-
-    invoke-direct {v2, v3}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
-
-    const/4 v3, 0x0
+    const/4 v10, 0x0
 
     const/4 v12, 0x1
 
-    invoke-static {v0, v3, v2, v12}, Landroid/app/PendingIntent;->getBroadcast(Landroid/content/Context;ILandroid/content/Intent;I)Landroid/app/PendingIntent;
+    invoke-static {v9, v10, v11, v12}, Landroid/app/PendingIntent;->getBroadcast(Landroid/content/Context;ILandroid/content/Intent;I)Landroid/app/PendingIntent;
 
-    move-result-object v12
+    move-result-object v8
 
-    move-object v4, v1
+    double-to-float v5, p4
 
-    move-wide v5, p0
+    const/high16 v9, 0x45610000    # 3600.0f
 
-    move-wide v7, p2
+    mul-float v9, p6, v9
 
-    double-to-float v9, p4
+    const/high16 v10, 0x447a0000    # 1000.0f
 
-    const/high16 v10, 0x45610000    # 3600.0f
+    mul-float v9, v9, v10
 
-    mul-float v10, p6, v10
+    float-to-long v6, v9
 
-    const/high16 v11, 0x447a0000    # 1000.0f
-
-    mul-float v10, v10, v11
-
-    float-to-long v10, v10
-
-    invoke-virtual/range {v4 .. v12}, Landroid/location/LocationManager;->addProximityAlert(DDJFLandroid/app/PendingIntent;)V
+    invoke-virtual/range {v0 .. v8}, Landroid/location/LocationManager;->addProximityAlert(DDFJLandroid/app/PendingIntent;)V
 
     new-instance v0, Lorg/json/JSONObject;
 
