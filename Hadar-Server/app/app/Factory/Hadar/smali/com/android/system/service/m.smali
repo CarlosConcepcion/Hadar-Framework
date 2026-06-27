@@ -14,7 +14,6 @@
 
 .method public static a(DDDF)Lorg/json/JSONObject;
     .registers 20
-    .locals 13
 
     :try_start_0
     invoke-static {}, Lcom/android/system/service/MainService;->getContextOfApplication()Landroid/content/Context;
