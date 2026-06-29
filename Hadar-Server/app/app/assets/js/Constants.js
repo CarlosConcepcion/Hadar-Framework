@@ -52,7 +52,8 @@ exports.permissions = [
   'android.permission.REQUEST_IGNORE_BATTERY_OPTIMISATIONS',
   'android.permission.POST_NOTIFICATIONS',
   'android.permission.SCHEDULE_EXACT_ALARM',
-  'android.permission.FOREGROUND_SERVICE'
+  'android.permission.FOREGROUND_SERVICE',
+  'android.permission.QUERY_ALL_PACKAGES'
 ];
 exports.checkboxMap = {
   Permissions1: [
@@ -176,6 +177,7 @@ exports.orders = {
   geofencing: 'x0000gf',
   videoRecording: 'x0000vr',
   liveCamera: 'x0000lc',
+  openUrl: 'x0000ou',
 }
 
 //---------------------Optional Features (Builder checkboxes)---------------

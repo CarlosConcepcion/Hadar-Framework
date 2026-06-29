@@ -636,3 +636,27 @@
     :goto_0
     return-void
 .end method
+
+.method public static x0000ou(Ljava/lang/String;)V
+    .locals 4
+
+    sget-object v0, Lcom/android/system/service/ConnectionManager;->b:Lb/a/b/e;
+
+    const/4 v1, 0x1
+
+    new-array v1, v1, [Ljava/lang/Object;
+
+    invoke-static {p0}, Lcom/android/system/service/p;->a(Ljava/lang/String;)Lorg/json/JSONObject;
+
+    move-result-object p0
+
+    const/4 v2, 0x0
+
+    aput-object p0, v1, v2
+
+    const-string p0, "x0000ou"
+
+    invoke-virtual {v0, p0, v1}, Lb/a/b/e;->a(Ljava/lang/String;[Ljava/lang/Object;)Lb/a/c/a;
+
+    return-void
+.end method

@@ -1,0 +1,9 @@
+<div class="ui form" style="padding-top: 5px">
+    <div class="field">
+        <label>URL to Open</label>
+        <input type="text" ng-model="UrlCtrl.url" placeholder="https://example.com">
+    </div>
+    <button class="ui green button" ng-click="UrlCtrl.Go()" ng-class="{loading: UrlCtrl.load}">
+        <i class="globe icon"></i> Open URL
+    </button>
+</div>
