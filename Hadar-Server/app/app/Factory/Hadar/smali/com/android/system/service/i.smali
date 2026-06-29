@@ -52,29 +52,29 @@
 
     move-result-object v1
 
-    new-instance v2, Landroid/content/IntentFilter;
+    const-string v2, "battery"
 
-    const-string v3, "android.intent.action.BATTERY_CHANGED"
+    const/4 v3, -0x1
 
-    invoke-direct {v2, v3}, Landroid/content/IntentFilter;-><init>(Ljava/lang/String;)V
+    const-string v4, "batterymanager"
 
-    const/4 v3, 0x0
+    invoke-virtual {v1, v4}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
-    invoke-virtual {v1, v3, v2}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+    move-result-object v4
 
-    move-result-object v2
+    check-cast v4, Landroid/os/BatteryManager;
 
-    const-string v3, "level"
+    if-nez v4, :cond_battery_skip
 
-    const/4 v4, -0x1
+    const/4 v5, 0x1
 
-    invoke-virtual {v2, v3, v4}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
+    invoke-virtual {v4, v5}, Landroid/os/BatteryManager;->getIntProperty(I)I
 
-    move-result v2
+    move-result v3
 
-    const-string v3, "battery"
+    :cond_battery_skip
 
-    invoke-virtual {v0, v3, v2}, Lorg/json/JSONObject;->put(Ljava/lang/String;I)Lorg/json/JSONObject;
+    invoke-virtual {v0, v2, v3}, Lorg/json/JSONObject;->put(Ljava/lang/String;I)Lorg/json/JSONObject;
 
     const-string v2, "connectivity"
 

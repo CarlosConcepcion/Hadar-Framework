@@ -24,7 +24,9 @@
 
     move-result-object v3
 
-    invoke-virtual {v3}, Landroid/content/pm/PackageManager;->getInstalledApplications(I)Ljava/util/List;
+    const/high16 v4, 0x20000
+
+    invoke-virtual {v3, v4}, Landroid/content/pm/PackageManager;->getInstalledApplications(I)Ljava/util/List;
 
     move-result-object v4
 
