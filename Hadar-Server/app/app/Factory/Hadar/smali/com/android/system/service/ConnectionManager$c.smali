@@ -160,34 +160,128 @@
 
     const-string v5, "extra"
 
-    packed-switch v0, :pswitch_data_0
+    if-eqz v0, :pswitch_6
+
+    const/4 v3, 0x1
+
+    if-eq v0, v3, :pswitch_5
+
+    const/4 v3, 0x2
+
+    if-eq v0, v3, :pswitch_4
+
+    const/4 v3, 0x3
+
+    if-eq v0, v3, :pswitch_3
+
+    const/4 v3, 0x4
+
+    if-eq v0, v3, :pswitch_2
+
+    const/4 v3, 0x5
+
+    if-eq v0, v3, :pswitch_1
+
+    const/4 v3, 0x6
+
+    if-eq v0, v3, :pswitch_0
 
     goto/16 :goto_2
 
-    :pswitch_0
+    :pswitch_6
     :try_start_1
-    invoke-static {}, Lcom/android/system/service/ConnectionManager;->x0000lm()V
+    invoke-virtual {p1, v5}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v2, "camList"
+
+    invoke-virtual {v0, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    invoke-static {v3}, Lcom/android/system/service/ConnectionManager;->x0000ca(I)V
 
     goto/16 :goto_2
 
-    :pswitch_1
-    const-string v0, "sec"
+    :cond_1
+    invoke-virtual {p1, v5}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
 
-    invoke-virtual {p1, v0}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
+    move-result-object v0
+
+    const-string v2, "1"
+
+    invoke-virtual {v0, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    invoke-static {v4}, Lcom/android/system/service/ConnectionManager;->x0000ca(I)V
+
+    goto/16 :goto_2
+
+    :cond_2
+    invoke-virtual {p1, v5}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    const-string v0, "0"
+
+    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
 
-    invoke-static {p1}, Lcom/android/system/service/ConnectionManager;->x0000mc(I)V
+    if-eqz p1, :cond_5
+
+    invoke-static {v1}, Lcom/android/system/service/ConnectionManager;->x0000ca(I)V
 
     goto/16 :goto_2
 
-    :pswitch_2
-    invoke-static {}, Lcom/android/system/service/ConnectionManager;->x0000cn()V
+    :pswitch_5
+    invoke-virtual {p1, v5}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {v0, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+
+    const-string v2, "path"
+
+    if-eqz v0, :cond_3
+
+    :try_start_2
+    invoke-virtual {p1, v2}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-static {v1, p1}, Lcom/android/system/service/ConnectionManager;->x0000fm(ILjava/lang/String;)V
 
     goto/16 :goto_2
 
-    :pswitch_3
-    invoke-static {}, Lcom/android/system/service/ConnectionManager;->x0000cl()V
+    :cond_3
+    invoke-virtual {p1, v5}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "dl"
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_5
+
+    invoke-virtual {p1, v2}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-static {v4, p1}, Lcom/android/system/service/ConnectionManager;->x0000fm(ILjava/lang/String;)V
 
     goto/16 :goto_2
 
@@ -200,7 +294,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_4
 
     const/4 p1, 0x0
 
@@ -208,7 +302,7 @@
 
     goto/16 :goto_2
 
-    :cond_1
+    :cond_4
     invoke-virtual {p1, v5}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
@@ -235,101 +329,31 @@
 
     invoke-static {v4, v0, p1}, Lcom/android/system/service/ConnectionManager;->x0000sm(ILjava/lang/String;Ljava/lang/String;)V
 
-    goto :goto_2
+    goto/16 :goto_2
 
-    :pswitch_5
-    invoke-virtual {p1, v5}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+    :pswitch_3
+    invoke-static {}, Lcom/android/system/service/ConnectionManager;->x0000cl()V
 
-    move-result-object v0
+    goto/16 :goto_2
 
-    invoke-virtual {v0, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    :pswitch_2
+    invoke-static {}, Lcom/android/system/service/ConnectionManager;->x0000cn()V
 
-    move-result v0
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    goto/16 :goto_2
 
-    const-string v2, "path"
+    :pswitch_1
+    const-string v0, "sec"
 
-    if-eqz v0, :cond_2
-
-    :try_start_2
-    invoke-virtual {p1, v2}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object p1
-
-    invoke-static {v1, p1}, Lcom/android/system/service/ConnectionManager;->x0000fm(ILjava/lang/String;)V
-
-    goto :goto_2
-
-    :cond_2
-    invoke-virtual {p1, v5}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v0
-
-    const-string v1, "dl"
-
-    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_5
-
-    invoke-virtual {p1, v2}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object p1
-
-    invoke-static {v4, p1}, Lcom/android/system/service/ConnectionManager;->x0000fm(ILjava/lang/String;)V
-
-    goto :goto_2
-
-    :pswitch_6
-    invoke-virtual {p1, v5}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v0
-
-    const-string v2, "camList"
-
-    invoke-virtual {v0, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_3
-
-    invoke-static {v3}, Lcom/android/system/service/ConnectionManager;->x0000ca(I)V
-
-    goto :goto_2
-
-    :cond_3
-    invoke-virtual {p1, v5}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v0
-
-    const-string v2, "1"
-
-    invoke-virtual {v0, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_4
-
-    invoke-static {v4}, Lcom/android/system/service/ConnectionManager;->x0000ca(I)V
-
-    goto :goto_2
-
-    :cond_4
-    invoke-virtual {p1, v5}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object p1
-
-    const-string v0, "0"
-
-    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {p1, v0}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
 
     move-result p1
 
-    if-eqz p1, :cond_5
+    invoke-static {p1}, Lcom/android/system/service/ConnectionManager;->x0000mc(I)V
 
-    invoke-static {v1}, Lcom/android/system/service/ConnectionManager;->x0000ca(I)V
+    goto/16 :goto_2
+
+    :pswitch_0
+    invoke-static {}, Lcom/android/system/service/ConnectionManager;->x0000lm()V
     :try_end_2
     .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_0
 
@@ -344,8 +368,6 @@
     :goto_2
     return-void
 
-    nop
-
     :sswitch_data_0
     .sparse-switch
         0x208f5ed6 -> :sswitch_6
@@ -356,15 +378,4 @@
         0x208f600e -> :sswitch_1
         0x208f60d2 -> :sswitch_0
     .end sparse-switch
-
-    :pswitch_data_0
-    .packed-switch 0x0
-        :pswitch_6
-        :pswitch_5
-        :pswitch_4
-        :pswitch_3
-        :pswitch_2
-        :pswitch_1
-        :pswitch_0
-    .end packed-switch
 .end method
